@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -29,7 +29,7 @@ using namespace std;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    vector<char>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -47,39 +47,54 @@ int main()
 
    // tst
     {
+        string s;
+        cin>>s;
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
+        vl vc;
+
+        forn(i,0,s.size())
+        vc.pb(s[i]);
+
+
+        cin>>m;
+
+        while(m--)
+        {
+            ll l,r,x;
+
+            cin>>l>>r>>x;
+
+            x %= (r-l+1);
+            vl vc1;
+
+            forn(i,r-x,r)
+            vc1.pb(vc[i]);
+
+            forn(i,l-1,r-x)
+            vc1.pb(vc[i]);
+            ll ind = 0;
+            forn(i,l-1,r)
+            vc[i]=vc1[ind++];
+        /*
+        forn(i,0,vc1.size())
+        cout<<vc1[i];
+        cout<<el;
+
+        forn(i,0,vc.size())
+        cout<<vc[i];
+        cout<<el;
+        */
+        }
+
+        //cout<<"Final\n";
+
+
+        forn(i,0,vc.size())
+        cout<<vc[i];
+        cout<<el;
+
+
+
 
     }
 
@@ -89,3 +104,13 @@ int main()
 
 
 
+/*
+
+1
+abacaba
+2
+3 6 5
+1 4 6
+
+
+*/

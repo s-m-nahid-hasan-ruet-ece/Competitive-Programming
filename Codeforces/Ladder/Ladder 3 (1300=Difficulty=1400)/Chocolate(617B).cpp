@@ -45,41 +45,39 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
+    	cin>>n;
+    	ll ar[n+5];
+    	
+    	forn(i,0,n)
+    	cin>>ar[i];
+    	
+    	
+    	ll cnt = 0,ans = 1,f = 0;
+    	
+    	forn(i,0,n)
+    	{
+    		cnt=1;
+           if(ar[i]==1)
+            f = 1;
+           
+    	   while(f==1 && i<n && ar[i]==0)
+    	   	{
+    	   		i++;
+    	   		cnt++;
+    	   	}
+    	   	
+            if(ar[i]==1)
+    	   	ans*=cnt;
+    	   	
+    	}
+    	
+        if(!f)
+        cout<<0<<el;
+        else
+    	cout<<ans<<el;
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
 
     }
 
@@ -89,3 +87,12 @@ int main()
 
 
 
+/*
+
+4
+0 0 1 0
+
+
+
+
+*/

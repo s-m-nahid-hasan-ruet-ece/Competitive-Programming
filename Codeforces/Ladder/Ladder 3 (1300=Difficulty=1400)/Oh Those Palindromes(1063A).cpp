@@ -28,7 +28,7 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
+typedef    unordered_map<char,ll>mll;
 typedef    vector<ll>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
@@ -47,39 +47,33 @@ int main()
 
    // tst
     {
+    	
+    	cin>>n;
+    	string s;
+    	
+    	cin>>s;
+    	
+    	mll mc;
+    	
+    	forn(i,0,n)
+    	{
+    		mc[s[i]]++;
+    	}
+    	
+    	string ss = "";
+    	
+    	for(char c = 'a';c<='z';c++)
+    	{
+    		ll x = mc[c];
+    		
+    		while(x--)
+    		{
+    			ss+=c;
+    		}
+    	}
+    	
+    	cout<<ss<<el;
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
 
     }
 

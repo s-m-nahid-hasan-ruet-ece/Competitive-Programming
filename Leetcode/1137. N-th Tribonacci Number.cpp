@@ -1,7 +1,9 @@
 
+
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -38,54 +40,69 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+class Solution {
+public:
+    ll dp[40];
+    ll flag = 0;
+
+    void init()
+    {
+        memset(dp,-1,sizeof dp);
+    }
+
+    int tribonacci(int n) {
+        if(!flag)
+        {
+            init();
+            flag= 1;
+        }
+        if(n==0)
+            return 0;
+        if(n==1 || n==2)
+            return 1;
+
+        if(dp[n]!=-1)
+            return dp[n];
+
+
+        ll ans = tribonacci(n-1)+tribonacci(n-2)+tribonacci(n-3);
+        dp[n]=ans;
+        return dp[n];
+    }
+};
+
+
+
+
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    cin>>n;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ans = obj.tribonacci(n);
+    cout<<ans<<el;
 
-   // tst
-    {
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
 
-    }
+
+
+
+
 
 
     return 0;
 }
+
+
 
 
 

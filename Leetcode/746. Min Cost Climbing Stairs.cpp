@@ -1,13 +1,14 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -38,54 +39,99 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+
+
+
+class Solution {
+public:
+
+    vl costs;
+    int dp[1010];
+    int n;
+
+    void init()
+    {
+        memset(dp,-1,sizeof dp);
+    }
+
+
+    int solve(int i)
+    {
+             //   printf("i--  %d  dp--  %d  n--  %d\n",i,dp[i],n);
+
+        if(i>=n)
+            return 0;
+
+        if(dp[i]!=-1)
+            return dp[i];
+
+        int ans1=0,ans2=0;
+
+        ans1 = costs[i]+ solve(i+1);
+        ans2 = costs[i] + solve(i+2);
+
+        dp[i] = min(ans1,ans2);
+
+        return dp[i];
+    }
+
+
+    int minCostClimbingStairs(vector<int>& cost) {
+
+        forn(i,0,cost.size())
+        {
+            costs.pb(cost[i]);
+        }
+        n = costs.size();
+
+        init();
+
+        int ans  = solve(0);
+        ans = min(ans,solve(1));
+
+        return ans;
+    }
+};
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    cin>>n;
 
-   // tst
+    forn(i,0,n)
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
-
+        ll x ;
+        cin>>x;
+        vc.pb(x);
     }
+
+    ans = obj.minCostClimbingStairs(vc);
+
+    cout<<ans<<el;
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
 
 
 

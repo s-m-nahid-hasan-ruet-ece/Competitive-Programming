@@ -1,13 +1,14 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -38,54 +39,77 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        vl vc;
+
+
+        forn(i,0,nums.size())
+        {
+            vc.pb(nums[i]*nums[i]);
+        }
+
+        sort(vc.begin(),vc.end());
+
+        return vc;
+
+
+    }
+};
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n,m;
+    vl ans;
+    cin>>n;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    vl vc;
 
-   // tst
+    forn(i,0,n)
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
-
+        ll x ;
+        cin>>x;
+        vc.pb(x);
     }
+
+    ans = obj.sortedSquares(vc);
+
+    forn(i,0,n)
+    cout<<ans[i]<<" ";
+    cout<<el;
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+/*
+
+7 9
+-1 0 3 5 9 12 13
+
+6 9
+-1 0 3 5 9 12
+
+
+6 2
+-1 0 3 5 9 12
+
+4 2
+1 3 5 6
+
+*/
+
 
 
 

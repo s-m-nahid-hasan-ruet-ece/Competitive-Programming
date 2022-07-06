@@ -1,7 +1,8 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -29,8 +30,8 @@ using namespace std;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
-typedef    vector<pll>vll;
+typedef    vector<int>vl;
+typedef    vector<vl>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
 typedef    multiset<ll>msl;
@@ -38,54 +39,79 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vll ans;
+        ll n = numRows;
+
+        forn(i,1,n+1)
+        {
+            vl xx;
+            forn(j,0,i)
+            {
+                if(i==1)
+                    xx.pb(1);
+                else
+                {
+                   if(j>0 && j<i-1)
+                   {
+                       xx.pb(ans[i-2][j-1]+ans[i-2][j]);
+                   }
+                   else
+                    xx.pb(1);
+
+                }
+            }
+            ans.pb(xx);
+
+        }
+
+        return ans;
+    }
+};
+
+
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    vll ans;
+    cin>>n;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ans = obj.generate(n);
 
-   // tst
+
+    forn(i,0,n)
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
-
+        forn(j,0,ans[i].size())
+        cout<<ans[i][j]<<" ";
+        cout<<el;
     }
+
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
+
 
 
 

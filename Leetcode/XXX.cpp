@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -45,47 +45,54 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    tst
     {
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
+    	ll p,q,r,s;
+    	cin>>n>>a>>b;
+    	cin>>p>>q>>r>>s;
+
+
+        forn(i,p,q+1)
+    	{
+    		forn(j,r,s+1)
+              {
+                  ll x1,y1,x2,y2;
+
+                  x1 = i-a;
+                  y1 = j-b;
+
+                  x2 = i-a;
+                  y2 = b-i;
+                 // if(i==p && j==r)
+                  {
+                      printf("x1-- %lld  y1-- %lld  x2-- %lld  y2-- %lld  %lld   %lld   %lld  %lld\n",x1,y1,x2,y2,max(1-a,1-b),min(n-a,n-b),max(1-a,b-n),x2<=min(n-a,b-1));
+                  }
+//
+                  if(x1==y1 && x1>=max(1-a,1-b) && x1<=min(n-a,n-b))
+                  {
+                    cout<<'#';
+                  }
+//
+                 else if(x2==y2 && x2>=max(1-a,b-n) && x2<=min(n-a,b-1))
+                  {
+                    cout<<'#';
+                  }
+                  else
+                    cout<<'.';
+
+              }
+          cout<<el;
+        }
+
+
 
     }
 
 
     return 0;
 }
+
 
 
 

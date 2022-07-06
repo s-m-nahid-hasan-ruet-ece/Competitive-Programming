@@ -45,41 +45,59 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    tst
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
+    	
+    	ll p,q,r,s;
+    	cin>>n>>a>>b;
+    	cin>>p>>q>>r>>s;
+    	
+    	string str[n+5];
+    	
+    	vl vc1,vc2;
+    	vll vc;
+    	
+    	
+    	for(i = max(1-a,1-b);i<=min(n-a,n-b);i++)
+    		vc.pb(pll(a+i,b+i));
+    	
+    	for(i = max(1-a,b-n);i<=min(n-a,b-1);i++)
+    		vc.pb(pll(a+i,b-i));    	
+    	bug
+    	
+    	forn(i,1,n+1)
+    	{
+    		str[i]="";
+    		forn(j,1,n+1)
+              {
+              	str[i][j]+='.';
+              }        
         
-     
-    
-     
-     cout<<ans<<el;
-     
+        }
+    	bug
+        forn(i,0,vc.size())
+        {
+        	ll x=  vc[i].first;
+        	ll y = vc[i].second;
+        	
+        	if(x>0 && x<=n && y>0 && y<=n)
+        	{
+        		str[x][y]='#';
+        	}
+        }
+        bug
+        
+        forn(i,p,q+1)
+    	{
+    		
+    		forn(j,r,s+1)
+              {
+              	cout<<str[i][j];
+              }        
+          cout<<el;
+        }        
+        
+        
 
     }
 

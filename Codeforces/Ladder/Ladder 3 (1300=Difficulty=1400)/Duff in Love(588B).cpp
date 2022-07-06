@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -12,7 +12,6 @@ using namespace std;
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
 #define pb               push_back
-#define mp               make_pair
 #define all(x)           (x).begin(),(x).end()
 #define fi               first
 #define se               second
@@ -22,7 +21,7 @@ using namespace std;
 #define pi               acos(-1.0)
 #define fio              ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define tst              cin>>t; while(t--)
-#define sz               200050
+#define sz               1000010
 
 
 
@@ -38,6 +37,48 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+//  PRIME FACTORS
+bitset<sz>bs;
+vl prime;
+mll mp;
+void sieve()
+{
+    for(ll i=2; i<=sz; i++)
+    {
+        if(bs[i]==0)
+        {
+            for(ll j = i*i; j<=sz; j+=i)
+                bs[j]=1;
+            prime.pb(i);
+        }
+    }
+}
+void pf(ll n)
+{
+    ll ind=0,pr=prime[ind],cnt=0;
+    while(pr*pr<=n)
+    {
+      if(n%pr==0)
+      {
+        cnt = 0;
+        while(n%pr==0)
+        {
+            n/=pr;
+            cnt++;
+        }
+        mp[pr]=cnt;
+      }
+        pr=prime[ind++];
+
+    }
+
+    if(n!=1)
+        mp[n]++;
+}
+
+
+
 int main()
 {
 
@@ -45,41 +86,34 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
+        sieve();
+
+        cin>>n;
+        pf(n);
+
+        ll ans = 1;
+
+        for(auto I=mp.begin();I!=mp.end();I++)
+        {
+            ll x = I->first;
+            ll y = I->second;
+            //printf("x-- %lld   y-- %lld\n", x,y);
+
+            if(y%2==0)
+                y--;
+
+            while(y--)
+                ans*=x;
+        }
+
+        cout<<ans<<el;
+
+
+
+
 
     }
 

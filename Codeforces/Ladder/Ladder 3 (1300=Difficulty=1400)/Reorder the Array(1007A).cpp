@@ -47,39 +47,43 @@ int main()
 
    // tst
     {
+    	cin>>n;
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
+    	
+    	vl vc1,vc2;
+    	
+    	forn(i,0,n)
+    	{
+    		cin>>a;
+    		vc1.pb(a);
+            vc2.pb(a);
+    	}
+    	
+    	sort(vc1.rbegin(),vc1.rend());
+    	
+    	sort(vc2.rbegin(),vc2.rend());
+    	
+    	ll cnt= 0;
+    	i = 0;
+    	ll ind = 0;
+    	while(i<n)
+    	{
+    		if(vc1[i]>=vc2[ind])
+    			{
+    				i++;
+    				continue;
+    			}
+             else
+             {
+             	cnt++;
+             	ind++;
+             	i++;
+             }    			
+    			
+    	}
+    	
+    	
+    	cout<<cnt<<el;
 
     }
 

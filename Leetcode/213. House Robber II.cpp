@@ -1,13 +1,14 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -38,54 +39,108 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+
+class Solution {
+public:
+
+    int dp[110][2];
+    vl cost;
+
+
+    void init()
+    {
+        memset(dp,-1,sizeof dp);
+    }
+
+    int solve(int i, int j)
+    {
+        if(i>=cost.size())
+            return 0;
+        if(i==cost.size()-1 && j==1 && i!=0)
+            return 0;
+
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+
+        int ans1=0,ans2=0;
+
+        ans1 = cost[i] + solve(i+2,j);
+
+        if(i==0)
+        ans2 = solve(i+1,0);
+        else
+        ans2 = solve(i+1,j);
+
+        dp[i][j] = max(ans1,ans2);
+
+        return dp[i][j];
+
+    }
+
+    int rob(vector<int>& nums) {
+
+        forn(i,0,nums.size())
+        cost.pb(nums[i]);
+
+        init();
+
+        int r = solve(0,1);
+        return r;
+    }
+};
+
+
+
+
+
+
+
 int main()
 {
 
     fio
-
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-   // tst
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
+    cin>>n;
+    forn(i,0,n)
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
-
+        cin>>ans;
+        vc.pb(ans);
     }
+
+
+
+    ans = obj.rob(vc);
+
+    cout<<ans<<el;
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+/*
+
+5
+2 7 9 3 1
+
+5
+7 5 3 9 1
+
+6
+7 1 1 9 2 10
+
+*/
+
 
 
 

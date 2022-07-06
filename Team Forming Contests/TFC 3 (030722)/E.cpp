@@ -45,41 +45,49 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    ///tst
     {
+    	
+    	cin>>n;
+    	
+    	ll ar[n+5];
+    	
+    	forn(i,0,n)
+    	cin>>ar[i];
+    	
+    	mll cnt1,cnt2;
+    	ll mx1=0,mx2=0;
+    	
+    	forn(i,0,n)
+    	{
+    		if(i%2==1)
+    		{
+    			cnt1[ar[i]]++;
+    		    mx1 = max(mx1,cnt1[ar[i]]);
+    	    }
+    	    else
+    	    {
+    			cnt2[ar[i]]++;
+    		    mx2 = max(mx2,cnt2[ar[i]]);    	    	
+    	    }
+    	        	        	    
+       }
+       ll cnt = 0;
+       if(mx1!=n/2)
+       	cnt+= (n/2)-mx1;
+       if(mx2!=n/2)
+       	cnt+=(n/2)-mx2;
+       
+       if(cnt==0 && ar[0]==ar[1])
+       	cnt=n/2;
+       
+       cout<<cnt<<el;
+       	
+       
+    	
+    	
+    	
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
 
     }
 

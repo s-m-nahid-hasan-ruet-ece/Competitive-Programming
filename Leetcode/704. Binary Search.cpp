@@ -1,13 +1,14 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -38,54 +39,88 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+
+        ll l=0, r = nums.size()-1;
+
+        while(l<=r)
+        {
+            ll mid = (l+r)/2;
+            //printf("l--  %d  r--  %d mid--  %d\n",l,r,mid);
+
+            if(nums[mid]==target)
+                return mid;
+
+            if(nums[mid]>target)
+            {
+                r = mid-1;
+            }
+            else
+            {
+                l = mid+1;
+            }
+        }
+
+        return -1;
+
+    }
+};
+
+
+
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n,m;
+    int ans;
+    cin>>n>>m;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    vl vc;
 
-   // tst
+    forn(i,0,n)
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
-
+        cin>>ans;
+        vc.pb(ans);
     }
+
+    ans = obj.search(vc,m);
+
+    cout<<ans<<el;
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+/*
+
+7 9
+-1 0 3 5 9 12 13
+
+6 9
+-1 0 3 5 9 12
+
+
+6 2
+-1 0 3 5 9 12
+
+*/
 
 
 

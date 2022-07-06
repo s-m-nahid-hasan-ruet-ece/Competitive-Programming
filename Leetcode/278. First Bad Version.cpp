@@ -1,13 +1,14 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -38,54 +39,100 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+ll bad;
+// The API isBadVersion is defined for you.
+ bool isBadVersion(int version)
+ {
+     if(version<bad)
+        return false;
+     else
+        return true;
+
+ }
+
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        long long int lo = 1, hi = n;
+        long long int mid;
+
+        while(lo<=hi)
+        {
+
+            mid =(lo+hi)/2;
+            printf("lo--  %d hi --  %d  mid-- %d  isbad-- %d\n",lo,hi,mid,isBadVersion(mid));
+
+            if(hi==lo)
+                break;
+            if(isBadVersion(mid)==false)
+                lo = mid+1;
+            else
+                hi = mid;
+        }
+
+        return (int)mid;
+
+    }
+};
+
+
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n,m;
+    int ans;
+    cin>>n>>m;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    bad = m;
 
-   // tst
-    {
+    ans = obj.firstBadVersion(n);
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
+    cout<<ans<<el;
 
-    }
+
+
+
+
+
+
 
 
     return 0;
 }
+
+/*
+
+7 9
+-1 0 3 5 9 12 13
+
+6 9
+-1 0 3 5 9 12
+
+
+6 2
+-1 0 3 5 9 12
+
+
+
+lo+hi = 5
+
+mid = 2
+
+x = 3
+
+1 2
+2 5
+
+
+*/
+
 
 
 

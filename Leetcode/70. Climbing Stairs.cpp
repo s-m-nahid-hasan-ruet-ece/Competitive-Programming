@@ -1,7 +1,9 @@
 
+
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -38,54 +40,81 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+
+class Solution {
+public:
+
+    int dp[50];
+    int N;
+
+    void init()
+    {
+        memset(dp,-1,sizeof dp);
+    }
+
+    int solve(int i)
+    {
+        if(i>=N)
+            return 1;
+
+        if(dp[i]!=-1)
+            return dp[i];
+
+        int ans1=0,ans2=0;
+
+        if(i+1<=N)
+        ans1+=solve(i+1);
+        if(i+2<=N)
+        ans2+=solve(i+2);
+
+        dp[i]=ans1+ans2;
+        return dp[i];
+    }
+
+
+
+    int climbStairs(int n) {
+
+        N = n;
+        init();
+        ll r = solve(0);
+        return r;
+
+
+    }
+};
+
+
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    cin>>n;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ans = obj.climbStairs(n);
 
-   // tst
-    {
+    cout<<ans<<el;
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
 
-    }
+
+
+
+
 
 
     return 0;
 }
+
+
 
 
 

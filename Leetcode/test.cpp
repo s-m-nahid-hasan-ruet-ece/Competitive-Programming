@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -29,7 +29,7 @@ using namespace std;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    vector<string>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -47,45 +47,43 @@ int main()
 
    // tst
     {
+    	string s;
+    	vl vc;
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
+    	getline(cin,s);
+
+        for(i=0;i<s.size();i++)
+        {
+        	if(s[i]=='"')
+        	{
+        		string ss = "<";
+        		i++;
+        		while(s[i]!='"')
+        			ss+=s[i++];
+        		ss+=">";
+        		vc.pb(ss);
+        	}
+        	else if(s[i]!=' ')
+        	{
+        		string ss = "<";
+        		while(s[i]!=' ')
+        			ss+=s[i++];
+        		ss+=">";
+        		vc.pb(ss);
+        	}
+
+        }
+
+        forn(i,0,vc.size())
+        cout<<vc[i]<<el;
+
 
     }
 
 
     return 0;
 }
+
 
 
 

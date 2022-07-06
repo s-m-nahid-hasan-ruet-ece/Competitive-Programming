@@ -47,39 +47,45 @@ int main()
 
    // tst
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
+    	ll north=0,west = 0,f= 0;
+    	
+    	
+    	cin>>n;
+    	
+    	while(n--)
+    	{
+    		ll x;
+    		string s;
+    		
+    		cin>>x>>s;
+    		
+    		if(s=="South" && north!=-20000)
+    			north-=x;
+    		else if(s=="North" && north!=0)
+    			north+=x;
+    		else if(s=="West" && !(north==0 || north==-20000))
+    			west+=x;
+    		else if(s=="East" && !(north==0 || north==-20000))
+    			west-=x;
+            else
+                f = 1;
+            
+            if(north<-20000 || north>0)                
+            f = 1;
+            //north%=20000;
+            if(west<-20000 || west>20000)
+            west%=20000;
         
-     
-    
-     
-     cout<<ans<<el;
-     
+            //cout<<north<<"  --  "<<west<<el;
+
+    	}
+    	
+        
+        if(!f && north==0)
+            cout<<"YES"<<el;
+        else
+            cout<<"NO"<<el;
+
 
     }
 
@@ -89,3 +95,11 @@ int main()
 
 
 
+/*
+
+3
+10314 South
+15961 North
+5647 South
+
+*/

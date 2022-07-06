@@ -37,49 +37,46 @@ typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
+ll n,m;
+string s;
+
+
+ll solve(ll i, ll num, ll x)
+{
+	
+	ll ans1= 0,ans2= 0;
+	
+	ll number = ((x%m)*(num%m))%m;
+	number += s[i]-'0';
+	
+	if(number%m==0)
+		ans2++;
+	if((s[i]-'0')%m==0)
+		ans2++;
+	
+	ans1= solve(i-1,number,x+1);
+	ans3 = solve(i-1,s[i]-'0',0);
+}
+
 
 int main()
 {
 
     fio
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ll t,i,j,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
+    	
+    	cin>>n>>m;
+    	cin>>s;
+    	
+    	ll x = solve(n-1,0,1);
     
-     
-     cout<<ans<<el;
-     
+    	
+    	
+
 
     }
 

@@ -1,7 +1,8 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -38,54 +39,56 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+
+    }
+};
+
+
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-   // tst
+    cin>>n;
+    forn(i,0,n)
     {
-
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
-
+        cin>>ans;
+        vc.pb(ans);
     }
+    cin>>ans;
+
+    vl aans = obj.twoSum(vc,ans);
+
+    forn(i,0,aans.size())
+    cout<<aans[i]<<" ";
+    cout<<el;
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
 
 
 

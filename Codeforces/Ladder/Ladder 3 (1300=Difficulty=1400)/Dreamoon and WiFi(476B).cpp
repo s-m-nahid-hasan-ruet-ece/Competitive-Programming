@@ -45,41 +45,61 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    tst
     {
+    	string s,ss;
+    	
+    	cin>>s>>ss;
+    	
+    	ll cnt =0;
+    	ll x =0,y = 0;
+    	
+    	
+    	forn(i,0,s.size())
+    	{
+    		if(s[i]=='+')
+    			x++;
+    		else
+    			x--;
+    	}
+    	bug
+    	
+    	forn(i,0,ss.size())
+    	{
+    		if(ss[i]=='?')
+    			cnt++;
+    		if(ss[i]=='+')
+    			y++;
+    	    else if(ss[i]=='-')
+    	    	y--;
+    	}
+    	bug
+    	if((x-y)>= cnt*-1 && (x-y)<=cnt)
+    	{
+    		ll h = 1<<cnt;
+    		ll l = ((x-y)+cnt)/2;
+    		
+    		ll x=1,y=1,xx=cnt,yy=l;
+    		
+    		ll m = l;
+    		
+    		while(m--)
+    		{
+    			x*=xx;
+    			y*=yy;
+    			xx--;
+    			yy--;
+    		}
+    		l = x/y;
+    		
+    		double ans = 1.0*h/l*1.0;
+    		
+    		cout<<ans<<el;
+    		
+    	}
+    	else
+    		cout<<0.0<<el;
 
-     cin>>n>>a>>b>>c;
-     
-   
-     
-     ll x= n%4;
-     
-     //printf("xx--  %lld\n", x);
-     if(x==0)
-     {
-     	cout<<0<<el;
-     	return 0;
-     }
-     
-     x = 4-x;
-     
-    // printf("x-- %lld\n",x );
-     
-     ll ans= x*a;
-     
-     if(x==1)
-      ans = min(ans,min(b+c,3*c));
-     if(x==2)
-      ans = min(ans,min(b,2*c));
-     if(x==3)
-      ans = min(ans,min(a+b,c));
-      
-        
-     
-    
-     
-     cout<<ans<<el;
-     
 
     }
 
