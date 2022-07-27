@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan
+     Author's Name   : S M Nahid Hasan                
 */
 
 #include<bits/stdc++.h>
@@ -39,37 +39,7 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
-    }
-
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
 
 int main()
 {
@@ -78,13 +48,34 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
+        cin>>n>>k;
+        
+        ll cnt=0,cnt1=0;
+        ll x= n;
+        while(x!=0)
+        {
+          //printf("x--  %lld\n", x);
+            cnt1++;
+            if(x&1!=0)
+            {
+                cnt = cnt1;
+            }           
+                x = x>>1;
+            
+        }
+        
 
-    	str = solution(str,k);
+        x = 1LL<<(cnt);
+        x--;
+        //printf("x2--  %lld  cnt---  %lld\n", x,cnt);
+
+       
+       if(k==1)
+       cout<<n<<el;
+       else
+        cout<<x<<el;
 
 
     }

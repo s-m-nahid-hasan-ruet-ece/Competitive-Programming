@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan
+     Author's Name   : S M Nahid Hasan                
 */
 
 #include<bits/stdc++.h>
@@ -30,46 +30,13 @@ typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
 typedef    vector<ll>vl;
-typedef    vector<pll>vll;
+typedef    vector<string>vls;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
 typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
-
-
-string solution(string &message, int K) {
-
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
-    }
-
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
 
 int main()
 {
@@ -78,13 +45,39 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
+    	string s;
+    	cin>>n>>s;
+    	
+    	mll mp;
+    	
+    	forn(i,1,10)
+    	{
+    		cin>>a;
+    		mp[i]=a;
+           // printf("i-- %lld   mp--- %lld\n",i,mp[i] );
+    	}
+    	
+        ll f=0,f1=0;
+        string ss="";
+    	forn(i,0,n)
+        {
+            if(f==0 && (s[i]-'0')<=mp[(s[i]-'0')])
+            {
+                ss+=mp[(s[i]-'0')]+'0';
+                if((s[i]-'0')<mp[(s[i]-'0')])
+                    f1 = 1;
+            }
+            else
+                {
+                    ss+=s[i];
+                    if(f1==1)
+                       f = 1;
+                }
+        }
+        
+        cout<<ss<<el;
 
 
     }
@@ -95,3 +88,26 @@ int main()
 
 
 
+/*
+
+3
+347
+1 1 4 5 1 1 1 1 1
+
+6
+347133
+1 1 4 5 1 1 8 1 1
+
+9
+193787726
+5 5 8 9 4 5 2 9 1
+
+593787726
+
+4
+1234
+1 1 4 5 1 1 1 1 1
+
+1245
+
+*/

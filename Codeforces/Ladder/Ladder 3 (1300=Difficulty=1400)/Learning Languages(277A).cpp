@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan
+     Author's Name   : S M Nahid Hasan                
 */
 
 #include<bits/stdc++.h>
@@ -30,6 +30,7 @@ typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
 typedef    vector<ll>vl;
+typedef    vector<vl>vvl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -39,37 +40,24 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
-
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
-    }
-
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
+//  DSU
+ll par[sz];
+void init()
+{
+    for(ll i=0; i<=sz; i++)		par[i]=i;
 }
+ll Find(ll a)
+{
+    if(par[a]==a)		return a;
+    return par[a]=Find(par[a]);
+}
+void Union(ll a,ll b)
+{
+    par[Find(b)]=Find(a);
+}
+
+
+
 
 int main()
 {
@@ -78,13 +66,40 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
+    	cin>>n>>m;
+    	init();
+        mll mp;
+    	vvl vc;
+        
+    	forn(j,0,n)
+    	{
+    		cin>>k;
+    		forn(i,0,k)
+    		{
+    			cin>>a;  
+                vc[j].pb(a);
+                mp[a]++;
+    		}
+            
+            forn(i,1,k)
+            {
+                Union(vc[j][i-1],vc[j][i]);
+            }
+            
+    	}
+    	
+        ll cnt =0;
+        sl st;
+    	forn(i,1,n+1)
+    	{
+            if(mp[i]!=0)
+                st.insert(par[i]);
+    		printf("i--  %lld  par--- %lld\n", i,par[i]);
+    	}
+        
+        cout<<st.size()-1<<el;
 
 
     }

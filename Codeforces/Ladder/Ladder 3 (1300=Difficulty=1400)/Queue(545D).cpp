@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan
+     Author's Name   : S M Nahid Hasan                
 */
 
 #include<bits/stdc++.h>
@@ -38,37 +38,13 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
-
-string solution(string &message, int K) {
-
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
-    }
-
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
+ll solve(ll i)
+{
+    
+    ll ans1 = 0;
+    
+    if()
+    ans1 = 
 }
 
 int main()
@@ -80,11 +56,30 @@ int main()
 
    // tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
+    	cin>>n;
+    	
+    	ll ar[n+5];
+    	
+    	forn(i,0,n)
+    	{
+    		cin>>ar[i];
+    	}
+    	
+    	sort(ar,ar+n);
+    	
+    	ll ans = 0,pr=0,cnt=0;
+    	
+    	
+    	forn(i,0,n)
+    	{
+            cout<<ar[i]<<" ";
+    		if(ar[i]>=pr)
+    			cnt++;
+    		pr+=ar[i];
+    	}
+        cout<<el;
+    	
+    	cout<<cnt<<el;
 
 
     }
@@ -95,3 +90,9 @@ int main()
 
 
 
+/*
+
+10
+1 1 2 3 5 8 13 21 34 55 
+
+*/

@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -7,7 +8,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -38,60 +39,83 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+ll dp[101][10001];
 
-string solution(string &message, int K) {
-
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
+class Solution {
+public:
+    string S,T;
+    ll lcs(ll i,ll j)
     {
-        if(message[i]==' ')
-          {
+        if(i==S.size() || j==T.size())
+            return 0;
 
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        ll ans = 0;
+
+        if(S[i]==T[j])
+            ans = 1+ lcs(i+1,j+1);
+        else
+        {
+            ans = max(lcs(i+1,j),lcs(i,j+1));
+        }
+
+        dp[i][j]=ans;
+
+        return dp[i][j];
     }
+    bool isSubsequence(string s, string t) {
+        S= s;
+        T= t;
+
+        if(s.size()==0)
+            return true;
+        if(t.size()==0)
+            return false;
+
+        memset(dp,-1,sizeof dp);
+
+        ll r = lcs(0,0);
+
+        if(r==min(s.size(),t.size()))
+            return true;
+        else
+            return false;
 
 
+    }
+};
 
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
+    string s,t;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    cin>>s>>t;
 
-   // tst
-    {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
+    ans = obj.isSubsequence(s,t);
 
 
-    }
+    cout<<ans<<el;
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
+
 
 
 

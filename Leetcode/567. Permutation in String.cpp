@@ -29,8 +29,8 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    unordered_map<char,ll>mll;
+typedef    vector<string>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -39,46 +39,54 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
-
-
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& numbers, int target) {
+    bool checkInclusion(string s1, string s2) {
 
-        mll mp;
-        vl ans;
+       if(s1.size()>s2.size())
+        return 0;
 
-        forn(i,0,numbers.size())
-        {
-          //  cout<<" --  "<<numbers[i]<<el;
-            mp[numbers[i]]= i+1;
-        }
-/*
-        for(auto I = mp.begin();I!=mp.end();I++)
-        {
-            cout<<I->first<<"  --  "<<I->second<<el;
-        }
-*/
+       mll mp1,mp2;
 
-        forn(i,0,numbers.size())
-        {
-            if(mp[target-numbers[i]]!=0)
-            {
-                ans.pb(i+1);
-                ans.pb(mp[target-numbers[i]]+1);
-                break;
-               // printf("i--  %d  mp--  %d\n",i,mp[target-numbers[i]]);
-            }
+       forn(i,0,s1.size())
+       mp1[s1[i]]++;
 
-        }
+       forn(i,0,s1.size())
+       mp2[s2[i]]++;
+
+       ll f= 0;
+       forn(i,s1.size(),s2.size()+1)
+       {
+           ll f1 = 0;
+           for(char ch = 'a';ch<='z';ch++)
+           {
+               if(mp1[ch]==mp2[ch])
+                continue;
+               else
+               {
+                   f1 =1 ;
+                   break;
+               }
+           }
+           if(f1==0)
+           {
+               f = 1;
+               break;
+           }
+
+           if(i==s2.size())
+            break;
+
+           mp2[s2[i]]++;
+           mp2[s2[i-s1.size()]]--;
+       }
+
+       return f;
 
 
-        return ans;
 
     }
 };
-
-
 
 
 
@@ -89,34 +97,19 @@ int main()
 
     fio
     Solution obj;
-    int n,m;
-    int ans;
-    vl vc;
+    int n;
+    bool ans;
+    string s1,s2 = " ";
+     cin>>s1>>s2;
 
-    cin>>n>>m;
-    vc.pb(0);
-    forn(i,1,n+1)
-    {
-        cin>>ans;
-        vc.pb(ans);
-    }
+   ans=  obj.checkInclusion(s1,s2);
 
-    vl aans = obj.twoSum(vc,m);
-
-    forn(i,0,aans.size())
-    cout<<aans[i]<<" ";
-    cout<<el;
-
-
-
-
-
-
-
+    cout<<ans<<el;
 
 
     return 0;
 }
+
 
 
 

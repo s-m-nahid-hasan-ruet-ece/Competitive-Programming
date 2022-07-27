@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -7,7 +8,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -28,7 +29,7 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
+typedef    unordered_map<char,ll>mll;
 typedef    vector<ll>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
@@ -39,59 +40,66 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        ll ans = 0, l= 0,r= 1;
 
-    if(message.size()<=K)
-        return message;
+        if(s.size()==1)
+            return 1;
 
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
+        mll mp;
+        mp[s[l]]++;
+      // mp[s[r]]++;
+        while(r<s.size())
+        {
+            mp[s[r]]++;
+            if(mp[s[r]]==2)
+            {
+                while(l<=r && mp[s[r]]==2)
+                {
+                    mp[s[l]]--;
+                    l++;
+                }
 
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
+            }
+
+            ans =max(ans,r-l+1);
+            printf("l--  %lld  r--  %lld\n",l,r);
+            r++;
+        }
+
+        return ans;
+
     }
+};
 
 
 
-    cout <<str<<"="<<endl;
 
-    return str;
 
-}
+
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    string s = " ";
+   // cin>>s;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ans = obj.lengthOfLongestSubstring(s);
 
-   // tst
-    {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
-
-
-    }
+    cout<<ans<<el;
 
 
     return 0;
 }
+
+
 
 
 

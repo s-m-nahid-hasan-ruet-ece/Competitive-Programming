@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan                
@@ -38,22 +39,38 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+
+
+
+
+
+
+
+
+
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    
+    ans = obj.func();
+    
+    
+    
+    
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    tst
-    {
-
-
-    }
+    
 
 
     return 0;
 }
+
+
 
 
 

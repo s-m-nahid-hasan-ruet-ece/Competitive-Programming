@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan
+     Author's Name   : S M Nahid Hasan                
 */
 
 #include<bits/stdc++.h>
@@ -22,7 +22,7 @@ using namespace std;
 #define pi               acos(-1.0)
 #define fio              ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define tst              cin>>t; while(t--)
-#define sz               200050
+#define sz               100050
 
 
 
@@ -39,53 +39,75 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
-
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
+//  BFS
+bool vis[sz];
+ll dis[sz];
+vl edg[sz];
+ll n;
+ll bfs(ll s)
+{
+    vis[s]=1;
+    dis[s]=1;
+    queue<ll>q;
+    q.push(s);
+    while(!q.empty())
     {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
+        ll u,v;
+        u= q.front();
+        q.pop();
+        for(ll i=0; i<edg[u].size(); i++)
+        {
+            v = edg[u][i];
+            if(vis[v]==0)
+            {
+            	if(dis[u]==1)
+            		dis[v]=2;
+            	else
+            		dis[v]=1;
+                vis[v]=1;
+                q.push(v);
+            }
+        }
     }
-
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
+    
+    ll cnt1=0,cnt2=0;
+    
+    forn(i,1,n+1)
+    {
+    	if(dis[i]==1)
+    		cnt1++;
+    	else if(dis[i]==2)
+    		cnt2++;
+    }
+    
+    return (cnt1*cnt2)-n+1;
 }
+
+
 
 int main()
 {
 
     fio
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ll t,i,j,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
-
+    	
+    	cin>>n;
+    	
+    	forn(i,0,n-1)
+    	{
+    		cin>>a>>b;
+    		edg[a].pb(b);
+    		edg[b].pb(a);
+    	}
+    	
+    	
+    	ll ans  = bfs(1);
+    	
+    	cout<<ans<<el;
 
     }
 

@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -7,7 +8,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -39,59 +40,72 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+class Solution {
+public:
+    int getMaximumGenerated(int n) {
 
-    if(message.size()<=K)
-        return message;
+        ll ans = 0,cnt= 0;
+        ll ar[n+10];
 
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
+        if(n<2)
+            return n;
 
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
+        ar[0]=0;
+        ar[1]=1;
+        cnt= 2;
+
+        for(ll i=1;i<n+2;i+=1)
+        {
+
+            ar[i*2] = ar[i];
+            cnt++;
+            ans=  max(ans, ar[i*2]);
+
+            if(cnt==n+1)
+            break;
+
+            ar[i*2+1]= ar[i]+ar[i+1];
+            cnt++;
+            ans = max(ans,ar[i*2+1]);
+            if(cnt==n+1)
+                break;
+        }
+
+        return ans;
     }
+};
 
 
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    cin>>n;
 
-   // tst
-    {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
+    ans = obj.getMaximumGenerated(n);
 
 
-    }
+    cout<<ans<<el;
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
+
 
 
 

@@ -7,7 +7,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -25,11 +25,11 @@ using namespace std;
 #define sz               200050
 
 
-
+typedef    vector<ll>vl;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    unordered_map<ll,vl>mlv;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -39,59 +39,67 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
+class Solution {
+public:
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
+    void sortNums(vector<int>& nums)
     {
-        if(message[i]==' ')
-          {
+        forn(i,0,nums.size()-1)
+        {
+            forn(j,i+1,nums.size())
+            {
+                if(nums[j]<nums[i])
+                   {
+                       ll x= nums[i];
+                       nums[i]= nums[j];
+                       nums[j]=x;
+                   }
+            }
+        }
 
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
     }
 
+    void sortColors(vector<int>& nums) {
 
+        sortNums(nums);
 
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
+    }
+};
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n,t,x;
+    vl ans;
+    vl vc1,vc2;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-   // tst
+    cin>>n;
+    forn(i,0,n)
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
-
-
+        cin>>x;
+        vc1.pb(x);
     }
+
+
+    obj.sortColors(vc1);
+
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
+
+
 
 
 

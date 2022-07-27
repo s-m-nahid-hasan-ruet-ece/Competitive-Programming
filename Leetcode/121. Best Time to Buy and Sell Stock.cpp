@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -7,7 +8,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -39,59 +40,64 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
 
-    if(message.size()<=K)
-        return message;
+        ll ans = 0, mn= INT_MIN;
 
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
+        for(ll i = prices.size()-1;i>=0;i--)
+        {
+            mn = max(mn,prices[i]);
 
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
+            ans = max(ans,mn- prices[i]);
+        }
+
+        return ans;
+
     }
+};
 
 
 
-    cout <<str<<"="<<endl;
 
-    return str;
 
-}
+
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-   // tst
+    cin>>n;
+    forn(i,0,n)
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
-
-
+        cin>>ans;
+        vc.pb(ans);
     }
+
+    ans = obj.maxProfit(vc);
+
+
+    cout<<ans<<el;
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
+
 
 
 

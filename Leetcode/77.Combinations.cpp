@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -7,7 +8,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -39,59 +40,42 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
 
-    if(message.size()<=K)
-        return message;
+class Solution {
+public:
+    vector<vector<int>> combine(int n, int k) {
 
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
     }
+};
 
 
 
-    cout <<str<<"="<<endl;
 
-    return str;
 
-}
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-   // tst
-    {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
+    ans = obj.combine();
 
 
-    }
+
+
+
+
+
 
 
     return 0;
 }
+
+
 
 
 

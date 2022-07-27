@@ -1,5 +1,4 @@
 
-
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -26,11 +25,11 @@ using namespace std;
 #define sz               200050
 
 
-
+typedef    vector<ll>vl;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    unordered_map<ll,vl>mlv;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -39,49 +38,48 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
-
-
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& numbers, int target) {
+    vector<int> twoSum(vector<int>& nums, int target) {
 
         mll mp;
+        mlv mp1;
         vl ans;
 
-        forn(i,0,numbers.size())
+        forn(i,0,nums.size())
         {
-          //  cout<<" --  "<<numbers[i]<<el;
-            mp[numbers[i]]= i+1;
+            mp[nums[i]]++;
+            mp1[nums[i]].pb(i);
         }
-/*
-        for(auto I = mp.begin();I!=mp.end();I++)
+ll f= 0;
+        forn(i,0,nums.size())
         {
-            cout<<I->first<<"  --  "<<I->second<<el;
-        }
-*/
-
-        forn(i,0,numbers.size())
-        {
-            if(mp[target-numbers[i]]!=0)
+            if((2*nums[i]==target && mp[nums[i]]>1))
             {
-                ans.pb(i+1);
-                ans.pb(mp[target-numbers[i]]+1);
+                f=1;
+                ans.pb(mp1[nums[i]][0]);
+                ans.pb(mp1[nums[i]][1]);
                 break;
-               // printf("i--  %d  mp--  %d\n",i,mp[target-numbers[i]]);
             }
 
+
+
+            if(mp[target-nums[i]]!=0 && 2*nums[i]!=target)
+            {
+                f = 2;
+                ans.pb(i);
+                ans.pb(mp1[target-nums[i]][0]);
+                break;
+            }
         }
 
+       // cout<<"F: "<<f<<el;
 
         return ans;
 
+
     }
 };
-
-
-
-
-
 
 
 int main()
@@ -89,22 +87,21 @@ int main()
 
     fio
     Solution obj;
-    int n,m;
-    int ans;
+    int n,t,x;
+    vl ans;
     vl vc;
 
-    cin>>n>>m;
-    vc.pb(0);
-    forn(i,1,n+1)
+    cin>>n>>t;
+    forn(i,0,n)
     {
-        cin>>ans;
-        vc.pb(ans);
+        cin>>x;
+        vc.pb(x);
     }
 
-    vl aans = obj.twoSum(vc,m);
+    ans = obj.twoSum(vc,t);
 
-    forn(i,0,aans.size())
-    cout<<aans[i]<<" ";
+    forn(i,0,ans.size())
+    cout<<ans[i]<<" ";
     cout<<el;
 
 

@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -7,7 +8,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -29,7 +30,7 @@ using namespace std;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    vector<char>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -39,59 +40,60 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
+class Solution {
+public:
+    string reverseWords(string s) {
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+      string ss="";
 
-    if(message.size()<=K)
-        return message;
+      forn(i,0,s.size())
+      {
+          string str = "";
 
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
+          while(i<s.size() && s[i]!=' ')
           {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
+             str+=s[i];
+             i++;
           }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
+          reverse(str.begin(),str.end());
+          ss+=str;
+          if(i<s.size())
+          ss+=' ';
+          //printf("i--  %lld \n",i);
+      }
+
+      return ss;
+
+
     }
+};
 
 
 
-    cout <<str<<"="<<endl;
 
-    return str;
-
-}
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    string s;
+    getline(cin,s);
 
-   // tst
-    {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
+    string ss = obj.reverseWords(s);
 
-    	str = solution(str,k);
-
-
-    }
-
+    cout<<ss<<el;
 
     return 0;
 }
+
+
+
+
 
 
 

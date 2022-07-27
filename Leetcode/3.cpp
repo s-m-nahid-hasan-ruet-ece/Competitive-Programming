@@ -7,7 +7,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -38,38 +38,46 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+// you can use includes, for example:
+// #include <algorithm>
 
-string solution(string &message, int K) {
+// you can write to stdout for debugging purposes, e.g.
+// cout << "this is a debug message" << endl;
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+int solution(vector<int> &A) {
 
-    if(message.size()<=K)
-        return message;
+   sort(A.rbegin(),A.rend());
 
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
+   ll s= 0,cnt = 0;
+   double ar[A.size()+10];
+   for(int i =0 ;i<A.size();i++)
+   {
+       s+=A[i];
+       ar[i]=A[i];
+   }
+   double s1 = s;
+   for(int i =0;i<A.size(); )
+   {
+       s1-=ar[i];
+       ar[i] = (ar[i]/2.0);
+       s1+=ar[i];
+       cnt++;
+       //cout<<"cnt--"<<cnt<<el;
 
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
+       if(s1*2<=s)
         break;
-        str1+=message[i];
-        cnt++;
-    }
+       if(ar[i]<ar[i+1])
+        i++;
+   }
 
 
 
-    cout <<str<<"="<<endl;
+   return cnt;
 
-    return str;
+
 
 }
+
 
 int main()
 {
@@ -80,11 +88,19 @@ int main()
 
    // tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
+        vl vc1,vc2;
 
-    	str = solution(str,k);
+        cin>>n;
+        forn(i,0,n)
+        {
+
+            cin>>a;
+            vc1.pb(a);
+        }
+
+
+    	ll r = solution(vc1);
+    	cout<<r<<el;
 
 
     }
@@ -92,6 +108,8 @@ int main()
 
     return 0;
 }
+
+
 
 
 

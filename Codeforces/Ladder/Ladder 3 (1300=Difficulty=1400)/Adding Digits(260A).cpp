@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan
+     Author's Name   : S M Nahid Hasan                
 */
 
 #include<bits/stdc++.h>
@@ -38,39 +38,6 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
-
-string solution(string &message, int K) {
-
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
-    }
-
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
-
 int main()
 {
 
@@ -78,14 +45,58 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    //tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
-
+    	cin>>a>>b>>n;
+    	
+    	string s= "";
+    	ll res,num = a,x = a;
+    	
+    	while(x)
+    	{
+    	    s+= (x%10)+'0';
+    	    x/=10;
+    	}
+    	
+        reverse(s.begin(),s.end());
+        
+        res = a;   	
+        ll f = 0;
+    	while(n--)
+    	{
+    		ll f1 = 0;
+           // printf("n--  %lld \n", n);
+    		forn(i,0,10)
+    		{
+    			ll y = res*10+i;
+              //  printf("     i--  %lld  y-- %lld  res--- %lld\n",i,y,res );
+    			
+    			if(y%b==0)
+    			{
+    				f1 = 1;
+    				s+=i+'0';
+    				res = y%b;
+              //  printf("              res--  %lld\n", res);
+    				break;
+    			}
+    			
+    		}
+    		if(f1==0)
+    			{
+    				f = 1;
+    				break;
+    			}
+    		
+    	}
+    	
+    	//cout<<s<<el;
+    	
+    	if(!f)
+    		cout<<s<<el;
+    	else
+    		cout<<-1<<el;
+    	
+    	
 
     }
 

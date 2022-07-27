@@ -5,9 +5,10 @@
 */
 
 #include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -37,37 +38,27 @@ typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
+int solution(vector<int> &P, vector<int> &S) {
+
+       int s= 0;
+      for(int i =0;i<P.size();i++)
+        s+=P[i];
 
 
-string solution(string &message, int K) {
+      sort(S.rbegin(),S.rend());
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+      ll cnt = 0,cnt2=0;
 
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
-    }
+      for(int i =0;i<S.size();i++)
+      {
+          cnt2+=S[i];
+          cnt++;
+          if(s<=cnt2)
+            break;
+      }
 
 
-
-    cout <<str<<"="<<endl;
-
-    return str;
+      return cnt;
 
 }
 
@@ -80,11 +71,23 @@ int main()
 
    // tst
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
+        vl vc1,vc2;
 
-    	str = solution(str,k);
+        cin>>n;
+        forn(i,0,n)
+        {
+
+            cin>>a;
+            vc1.pb(a);
+        }
+
+        forn(i,0,n)
+        {
+            cin>>a;
+            vc2.pb(a);
+        }
+    	ll r = solution(vc1,vc2);
+    	cout<<r<<el;
 
 
     }
@@ -92,6 +95,7 @@ int main()
 
     return 0;
 }
+
 
 
 

@@ -7,7 +7,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -25,11 +25,11 @@ using namespace std;
 #define sz               200050
 
 
-
+typedef    vector<ll>vl;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    unordered_map<ll,vl>mlv;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -39,59 +39,62 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+        ll ind = m;
+        forn(i,0,n)
+        {
+            nums1[ind++]=nums2[i];
+        }
+        sort(nums1.begin(),nums1.end());
 
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
+        forn(i,0,nums1.size())
+        cout<<nums1[i]<<" ";
+        cout<<el;
     }
+};
 
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n,t,x;
+    vl ans;
+    vl vc1,vc2;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-   // tst
+    cin>>n>>t;
+    forn(i,0,n+t)
     {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
-
-
+        cin>>x;
+        vc1.pb(x);
     }
+
+    forn(i,0,t)
+    {
+        cin>>x;
+        vc2.pb(x);
+    }
+
+    obj.merge(vc1,n,vc2,t);
+
+
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
+
 
 
 

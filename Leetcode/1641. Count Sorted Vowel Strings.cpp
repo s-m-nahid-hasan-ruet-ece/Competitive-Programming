@@ -1,4 +1,5 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan
@@ -7,7 +8,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -39,59 +40,54 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-string solution(string &message, int K) {
+class Solution {
+public:
+    int countVowelStrings(int n) {
+        long long vows[5] = {5,4,3,2,1};
+        n--;
+        forn(i,0,n)
+        {
+            vows[0] = vows[4]+vows[3]+vows[2]+vows[1]+vows[0];
+            vows[1] = vows[4]+vows[3]+vows[2]+vows[1];
+            vows[2] = vows[4]+vows[3]+vows[2];
+            vows[3] = vows[4]+vows[3];
+        }
 
-    int cnt = 0, f = 0;
-    string str ="",str1="";
-    //cout<<message<<endl;
+       return vows[0];
 
-    if(message.size()<=K)
-        return message;
-
-    for(int i = 0;i<message.size();i++)
-    {
-        if(message[i]==' ')
-          {
-
-              str+=str1;
-              str1 ="";
-              f = 1;
-          }
-        if(cnt>K)
-        break;
-        str1+=message[i];
-        cnt++;
     }
+};
 
-
-
-    cout <<str<<"="<<endl;
-
-    return str;
-
-}
 
 int main()
 {
 
     fio
+    Solution obj;
+    int n;
+    int ans;
+    vl vc;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    cin>>n;
 
-   // tst
-    {
-    	string str;
-    	getline(cin,str);
-    	cin>>k;
-
-    	str = solution(str,k);
+    ans = obj.countVowelStrings(n);
 
 
-    }
+    cout<<ans<<el;
+
+
+
+
+
+
 
 
     return 0;
 }
+
+
+
+
 
 
 

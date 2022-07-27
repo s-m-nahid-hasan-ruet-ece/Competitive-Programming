@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan
+     Author's Name   : S M Nahid Hasan                
 */
 
 #include<bits/stdc++.h>
@@ -40,22 +40,17 @@ const ll mod=1000000007;
 
 
 string solution(string &message, int K) {
-
-    int cnt = 0, f = 0;
+    
+    int cnt = 0;
     string str ="",str1="";
-    //cout<<message<<endl;
-
-    if(message.size()<=K)
-        return message;
 
     for(int i = 0;i<message.size();i++)
     {
         if(message[i]==' ')
           {
-
-              str+=str1;
+              message+=" ";
+              message+=str1;
               str1 ="";
-              f = 1;
           }
         if(cnt>K)
         break;
@@ -63,9 +58,9 @@ string solution(string &message, int K) {
         cnt++;
     }
 
+   
 
-
-    cout <<str<<"="<<endl;
+    cout <<str<<endl;
 
     return str;
 
@@ -78,12 +73,11 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    tst
     {
     	string str;
-    	getline(cin,str);
-    	cin>>k;
-
+    	cin>>str>>k;
+    	
     	str = solution(str,k);
 
 
@@ -92,6 +86,7 @@ int main()
 
     return 0;
 }
+
 
 
 
