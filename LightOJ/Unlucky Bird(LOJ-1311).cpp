@@ -45,64 +45,22 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
+    	double v1,v2, v3, a1, a2, d, db;
     	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
-        vl vc;
+    	cin>>v1>>v2>>v3>>a1>>a2;
     	
     	
-        ll f = 0;
+    	d = (v1*v1)/(2*a1);
+    	d+= (v2*v2)/(2*a2);
+        
+        db = (v1/a1)* v3;
     	
-    	forn(i,0,n)
-    	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
-        
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    	
+    	cout<<fixed<<setprecision(10)<<"Case "<<tc++<<": "<<d<<" "<<db<<el;
+
+
     }
 
 

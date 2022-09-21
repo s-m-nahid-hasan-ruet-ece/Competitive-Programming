@@ -38,71 +38,61 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+ll n,k, ar[20], dp[20][1e5];
+
+
+ll solve(ll i, ll val)
+{
+	
+	if(val==k)
+		return 1;
+	if(i>=n)
+		return 0;
+	
+	if(dp[i][val]!=-1)
+		return dp[i][val];
+	
+	ll ans1 = 0, ans2=0, ans3=0;
+	
+	if(val+ar[i]<=k)
+		ans1=solve(i+1,val+ar[i]);
+	
+	if(ar[i]*2+val<=k)
+		ans2=solve(i+1,val+ar[i]*2);
+	
+	ans1 = ans1|ans2;
+	ans3= solve(i+1,val);
+	
+	dp[i][val] = ans1|ans3;
+	
+	printf("i--  %lld  dp--  %lld\n",i,dp[i][val] );
+	
+	return dp[i][val];
+}
+
+
 int main()
 {
 
     fio
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ll t,i,j,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
     	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
+    	cin>>n>>k;
     	
     	forn(i,0,n)
-    	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
+    	cin>>ar[i];
         
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+        memset(dp,-1,sizeof dp);
+    	
+    	ll r = solve(0,0);
+    	
+    	cout<<r<<el;
+
+
     }
 
 

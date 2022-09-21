@@ -28,7 +28,7 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
+typedef    unordered_map<char,ll>mll;
 typedef    vector<ll>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
@@ -37,6 +37,34 @@ typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
+string s,tt,p;
+ll dp[110][110];
+
+ll lcs(ll i,ll j)
+{
+    if(i>=s.size() || j>=tt.size())
+        return 0;
+    
+    if(dp[i][j]!=-1)
+        return dp[i][j];
+    
+    ll ans = 0;
+    
+    if(s[i]==tt[j])
+        ans+= 1+lcs(i+1,j+1);
+    else
+    {
+        ans=max(lcs(i+1,j),ans);
+        ans=max(ans,lcs(i,j+1));
+    }
+    
+    dp[i][j] = ans;
+    
+    return dp[i][j];
+    
+}
+
+
 
 int main()
 {
@@ -45,64 +73,53 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
+    	cin>>s>>tt>>p;
     	
-    	cin>>n;
+    	mll mp1,mp2,mp3;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
+    	forn(i,0,s.size())
+    	mp1[s[i]]++;
+    	forn(i,0,p.size())
+    	mp2[p[i]]++;
+    	forn(i,0,tt.size())
+    	mp3[tt[i]]++;
+
+        ll f= 0;    	
+    	for(char ii = 'a' ; ii<='z';ii++)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+    		if(mp1[ii]>mp3[ii])    			
+    		   f = 1;
+    		else if(mp1[ii]+mp2[ii]<mp3[ii])
+    		   f = 1;
+    		
+    		if(f)
+    			break;
     	}
-        
-        
-        
-        forn(i,0,n)
+    	
+    	
+    	if(!f)
         {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
             
+            memset(dp,-1,sizeof dp);
             
+            ll r = lcs(0,0);
+            //printf("r-- %lld\n", r);
+            
+            if(r == s.size())
+                cout<<"YES"<<el;
+            else
+                cout<<"NO"<<el;
+
            
-            
+
         }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+        else
+        cout<<"NO"<<el;
+    	
+
+
     }
 
 

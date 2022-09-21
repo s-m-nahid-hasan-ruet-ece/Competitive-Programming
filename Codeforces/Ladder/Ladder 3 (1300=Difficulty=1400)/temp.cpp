@@ -1,5 +1,4 @@
 
-
 /*
      Author's Handle : Crazy_Dreamer
      Author's Name   : S M Nahid Hasan                
@@ -39,38 +38,61 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
-
-
-
-
-
-
-
-
-
-
 int main()
 {
 
     fio
-    Solution obj;
-    int n;
-    int ans;
-    
-    ans = obj.func();
-    
-    
-    
-    
+
+    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+
+    //tst
+    {
+    	cin>>n;
+    	vl vc;
+    	
+    	for(i=1;i*i<=n;i++)
+    	{
+    		if(n%i==0)
+    		{
+    			vc.pb(i);
+    			if(i*i!=n)
+    				vc.pb(n/i);
+    		}
+    	}
+    	
+    	
+    	mll mp;
+    	
+    	while(n!=0)
+    	{
+    		mp[n%10]++;
+    		n/=10;
+    	}
+    	ll cnt =0;
+    	forn(i,0,vc.size())
+    	{
+    		ll x = vc[i];
+    		while(x!=0)
+    		{
+    			if(mp[x%10])
+    			{
+    				cnt++;
+    				break;
+    			}
+    			x/=10;
+    		}
+    	}
+    	
+    	cout<<cnt<<el;
+
+freopen("file.txt","r",stdin);
 
 
-    
+    }
 
 
     return 0;
 }
-
-
 
 
 

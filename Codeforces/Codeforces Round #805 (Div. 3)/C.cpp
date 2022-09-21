@@ -25,11 +25,11 @@ using namespace std;
 #define sz               200050
 
 
-
+typedef    vector<ll>vl;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    map<ll,ll>ml;
+typedef    map<ll,vl>mll;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -45,64 +45,49 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
+    	cin>>n>>k;
     	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
+    	ll ar[n+5];
+        ll ind = 1;
+        ml vis;
     	
     	forn(i,0,n)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+    		cin>>ar[i];
+            if(vis[ar[i]]==0)
+                vis[ar[i]]=ind++;
     	}
         
-        
+        vl vc[ind];
         
         forn(i,0,n)
         {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
+            vc[vis[ar[i]]].pb(i);
         }
         
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
         
-       
         
-   
+        
+    	
+    	while(k--)
+    	{
+    		cin>>a>>b;
+            if(vis[a]==0 || vis[b]==0)
+            {
+                cout<<"NO"<<el;
+                continue;
+            }
+            
+    		if(vc[vis[a]][0]<vc[vis[b]][vc[vis[b]].size()-1])
+    			cout<<"YES"<<el;
+    		else
+    			cout<<"NO"<<el;
+    		
+    	}
+
+
     }
 
 

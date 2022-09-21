@@ -32,7 +32,7 @@ typedef    unordered_map<ll,ll>mll;
 typedef    vector<ll>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
-typedef    set<ll>sl;
+typedef    set<char>sl;
 typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
@@ -45,64 +45,31 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
-    	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
+    	string str;
+    	cin>>str;
+    	sl st;
+    	ll cnt =0;
+        i = 0;
+    	while(i<str.size())
     	{
-    		forn(j,0,n)
+    		st.insert(str[i]);
+    		if(st.size()==4)
     		{
-    			cin>>ar[i][j];
+    			cnt++;
+    			st.clear();
+                st.insert(str[i]);
     		}
+            i++;
+       // cout<<"Sz: "<<st.size()<<el;
     	}
-        
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    	if(st.size()!=0)
+    		cnt++;
+    	
+    	cout<<cnt<<el;
+
+
     }
 
 

@@ -28,7 +28,7 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
+typedef    unordered_map<string,ll>mll;
 typedef    vector<ll>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
@@ -48,61 +48,57 @@ int main()
     //tst
     {
     	
-    	cin>>n;
+    	string s, str;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
+    	cin>>s;
+        cin.ignore();
+        
+
+        
+        ll cnt =0;
     	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
+    	while(1)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
-        
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
+    		getline(cin,str);
+    		
+            if(str=="END_OF_TEXT")
+                break;
+            
+            string ss="";
+            
+            
+            
+            
+            forn(i,0,str.size())
             {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
+                if(i+1==str.size() || str[i]==' ')
+                {
+                    if(i+1==str.size() && str[i]!=' ')
+                    {
+                        if(str[i]>='A' && str[i]<='Z')
+                        ss+=(str[i]-'A')+'a';
+                        else
+                        ss+=str[i];
+                    }
+                    
+                    if(s==ss)
+                        cnt++;
+                  //  cout<<"-- "<<ss<<el;
+                    ss="";
+                }
+                else
+                    {
+                        if(str[i]>='A' && str[i]<='Z')
+                        ss+=(str[i]-'A')+'a';
+                        else
+                        ss+=str[i];
+                    }
             }
             
-            
-           
-            
-        }
+    	}
         
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+        cout<<cnt<<el;
+
     }
 
 

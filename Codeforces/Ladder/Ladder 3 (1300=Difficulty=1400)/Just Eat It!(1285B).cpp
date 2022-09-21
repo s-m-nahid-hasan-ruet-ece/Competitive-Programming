@@ -45,69 +45,58 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
-    	
     	cin>>n;
+    	ll ar[n+5];
     	
-    	ll ar[n+5][n+5];
-        vl vc;
+    	forn(i,0,n)
+    	cin>>ar[i];
     	
     	
-        ll f = 0;
+    	ll cur=0,mx=INT_MIN,yas=0,f=-1,l=0,r=-1;
     	
     	forn(i,0,n)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+    		cur+=ar[i];
+    		yas+=ar[i];
+            if(mx<cur)
+            {
+                mx = cur;
+                r = i;
+            }
+    		
+    		if(cur<=0)
+    			{
+                    cur =0;
+                    l = i+1;
+                }
     	}
         
+        //printf("l-- %lld  r-- %lld  mx-- %lld\n", l,r,mx);
         
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    	
+    	if(yas>mx || ((r-l+1)==n && yas==mx))
+    		cout<<"YES"<<el;
+    	else
+    		cout<<"NO"<<el;
+
+
     }
 
 
     return 0;
 }
 
+/*
 
+4
+0 1 2 3
 
+4
+-3 1 2 3
+
+4
+1 -3 2 3
+
+*/

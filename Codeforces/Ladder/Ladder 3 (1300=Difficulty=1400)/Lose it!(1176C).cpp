@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -25,14 +25,13 @@ using namespace std;
 #define sz               200050
 
 
-
+typedef    set<ll>sl;
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
 typedef    vector<ll>vl;
-typedef    vector<pll>vll;
+typedef    vector<sl>vll;
 typedef    vector<pl>vlp;
-typedef    set<ll>sl;
 typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
@@ -47,62 +46,68 @@ int main()
 
     //tst
     {
-    	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
         vl vc;
-    	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
-    	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
-        
-        
-        
+        vc.pb(4);
+        vc.pb(8);
+        vc.pb(15);
+        vc.pb(16);
+        vc.pb(23);
+        vc.pb(42);
+
+
+        sl st[50];
+
+
+        cin>>n;
+
+        ll ar[n+5];
+
         forn(i,0,n)
         {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
+            cin>>ar[i];
+            st[ar[i]].insert(i);
         }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
+        ll cnt=0;
+        while(1)
+        {
+            ll pre = -1,f=0;
+            forn(i,0,vc.size())
+            {
+                if(st[vc[i]].empty())
+                {
+                    f = 1;
+                    break;
+                }
+                auto I = st[vc[i]].begin();
+                ll x = *I;
+                st[vc[i]].erase(x);
+
+                if(pre<x)
+                    cnt++;
+                else
+                    {
+                        
+                        i--;
+                        continue;
+                    }
+                pre = x;
+            }
+
+            if(f || cnt==n)
+                break;
+        }
+
+//printf("cnt-- %lld\n",cnt );
+        ll y = cnt - (cnt%6);
        
-        
-       
-        
-   
+        cout<<n-y<<el;
+
+
+
+
+
+
+
     }
 
 

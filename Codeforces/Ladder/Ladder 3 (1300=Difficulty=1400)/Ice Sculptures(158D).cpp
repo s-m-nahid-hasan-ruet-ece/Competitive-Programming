@@ -45,64 +45,41 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+  //  tst
     {
-    	
     	cin>>n;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
+    	ll ar[n+5];
     	
     	forn(i,0,n)
+    	cin>>ar[i];
+    	
+    	ll mx = INT_MIN;
+    	
+    	forn(i,1,n)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+            forn(k,0,i)
+            {
+               ll s = 0,cnt = 0;
+
+               for(j = k;j<n;j+=i)
+                   {
+                       s+=ar[j];
+                       cnt++;
+                   }
+            
+            if(cnt>2)
+               mx =max(mx,s);    
+           
+            }
+
     	}
         
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
             
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    	
+    	cout<<mx<<el;
+
+
     }
 
 

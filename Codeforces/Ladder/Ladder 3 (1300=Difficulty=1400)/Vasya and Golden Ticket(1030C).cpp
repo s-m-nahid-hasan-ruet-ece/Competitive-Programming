@@ -45,64 +45,76 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+   // tst
     {
-    	
     	cin>>n;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
+    	string s;
+    	cin>>s;
     	
-    	
-        ll f = 0;
+    	ll sum= 0,mx = 0;
     	
     	forn(i,0,n)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+    		sum+=s[i]-'0';
+    		mx = max(mx, (ll)(s[i]-'0'));
     	}
         
-        
-        
-        forn(i,0,n)
+        if(sum==0)
         {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
+            cout<<"YES"<<el;
+            return 0;
         }
         
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+       // printf("sum--  %lld  mx--  %lld\n", sum,mx);
+    	
+    	vl vc;
+    	
+    	for(i = 1;i*i<=sum;i++)
+    	{
+    		if(sum%i==0)
+    		{
+    			vc.pb(i);
+    			vc.pb(sum/i);
+    		}
+    	}
+    	
+    	ll f= 0;
+    	forn(i,0,vc.size())
+    	{
+    		if(mx>vc[i])
+    			continue;
+    		
+    		ll cnt = 0, x= 0;
+    		
+    		forn(j,0,n)
+    		{
+    			x+=s[j]-'0';
+    			
+    			if(x== vc[i])
+    			{
+    				cnt++;
+    				x = 0;
+    			}
+    		
+    		}
+          //  printf("vc--  %lld  x--  %lld  cnt--  %lld\n", vc[i],x,cnt);
+    		if(x==0 && cnt>1)
+    			{
+    				f = 1;
+    				break;
+    			}
+    		
+    	}
+    	
+    	if(f)
+    		cout<<"YES"<<el;
+    	else
+    		cout<<"NO"<<el;
+    	
+    	
+
+
     }
 
 

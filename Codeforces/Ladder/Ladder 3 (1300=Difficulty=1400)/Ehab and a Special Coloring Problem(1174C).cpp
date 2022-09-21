@@ -38,6 +38,10 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+
+
+
 int main()
 {
 
@@ -47,62 +51,30 @@ int main()
 
     //tst
     {
-    	
     	cin>>n;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
+    	ll x= 1;
+    	ll ar[n+4];
+    	memset(ar,-1,sizeof ar);
     	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
+    	forn(i,2,n+1)
     	{
-    		forn(j,0,n)
+    		if(ar[i]==-1)
     		{
-    			cin>>ar[i][j];
+        		for(j = i;j<=n;j+=i)
+    		    { 
+    			  ar[j]=x;
+    		    }    			
+    		    x++;
     		}
+
     	}
-        
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    	
+    	forn(i,2,n+1)
+    	cout<<ar[i]<<" ";
+    	cout<<el;
+
+
     }
 
 

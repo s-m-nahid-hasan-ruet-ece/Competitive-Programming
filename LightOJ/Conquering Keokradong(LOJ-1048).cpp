@@ -37,72 +37,82 @@ typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
+ll n,k, ar[1010];
+
+ll check(ll x)
+{
+	ll s = 0, cnt = 0, fl = 1;
+	
+	forn(i,0,n+1)
+	{
+		if(s+ar[i]<=x)
+			s+=ar[i];
+		else if(x<ar[i])
+			{
+				fl = 0;
+				break;
+			}
+		else			
+			{
+				cnt++;
+				s=0;
+				i--;
+			}
+	
+	}
+	
+	if(s!=0)
+	{
+		cnt++;
+	}
+	
+	if(cnt!=k+1)
+		 fl = 0;
+		
+	return fl;
+		
+}
+
 
 int main()
 {
 
     fio
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ll t,i,j,m,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
-    	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
+    	cin>>n>>k;
+    	ll l=0,r=1e9,mid;
+
+    	forn(i,0,n+1)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+    		cin>>ar[i];
+    		l = max(l, ar[i]);
     	}
-        
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    		
+    	
+    	
+    	
+    	while(l<r)
+    	{
+    		
+    		mid = (l+r)/2;
+    		
+    		//printf("l--  %lld  r--  %lld  mid--  %lld\n",l,r,mid );
+    		
+    		ll r = check(r);
+    		
+    		if(r)
+    			l = mid-1;
+    		else
+    			r = mid-1;    		
+    	}
+    	
+    	cout<<mid<<el;
+
+
     }
 
 

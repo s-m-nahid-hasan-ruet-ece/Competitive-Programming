@@ -28,7 +28,7 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
+typedef    map<pll,ll>mll;
 typedef    vector<ll>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
@@ -38,71 +38,52 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+mll dp;
+ll ar[100010],n;
+
+
+ll solve(ll i, ll last)
+{
+	
+	if(i>=n)
+		return 0;
+	
+	if(dp[pll(i,last)]!=0)
+		return dp[pll(i,last)];
+	
+	
+	ll ans =0, ans1=0;
+	
+	if(ar[i]>last)
+	ans+=ar[i]+solve(i+1,ar[i]);
+	
+	ans1+=solve(i+1,last);
+	
+	dp[pll(i,last)]= max(ans,ans1);
+	
+	return dp[pll(i,last)];
+}
+
 int main()
 {
 
     fio
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ll t,i,j,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
-    	
     	cin>>n;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
     	
     	forn(i,0,n)
-    	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
+    	cin>>ar[i];
+    	        
         
+        ll r = solve(0,-1);
         
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+        cout<<r<<el;
+
     }
 
 

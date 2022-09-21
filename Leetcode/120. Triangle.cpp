@@ -1,13 +1,14 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -30,7 +31,7 @@ typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
 typedef    unordered_map<ll,ll>mll;
 typedef    vector<ll>vl;
-typedef    vector<pll>vll;
+typedef    vector<vl>vlv;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
 typedef    multiset<ll>msl;
@@ -38,42 +39,67 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+class Solution {
+public:
+    vlv vc;
+    ll n;
+    ll dp[201][201];
+
+    ll solve(ll i,ll j)
+    {
+        if(i>=n)
+         return 0;
+
+
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+
+        ll ans1=0, ans2=0;
+
+        ans1 = vc[i][j]+solve(i+1,j);
+        ans2 = vc[i][j]+solve(i+1,j+1);
+
+        dp[i][j]= min(ans1,ans2);
+
+        return dp[i][j];
+
+    }
+    int minimumTotal(vector<vector<int>>& triangle) {
+       vc = triangle;
+       n = triangle.size();
+       memset(dp,-1,sizeof dp);
+
+       ll ans = solve(0,0);
+
+
+       return ans;
+    }
+};
 
 int main()
 {
 
     fio
+    Solution obj;
+    ll n;
+    ll ans;
+    vlv vc;
+    cin>>n;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-   // tst
+    forn(i,0,n)
     {
-    	cin>>n;
-    	
-    	ll ar[n+5];
-    	
-    	forn(i,0,n)
-    	{
-    		cin>>ar[i];
-    	}
-    	
-    	sort(ar,ar+n);
-    	
-    	ll ans = 0,pr=0,cnt=0;
-    	
-    	
-    	forn(i,0,n)
-    	{
-    		if(ar[i]>=pr)
-    			{
-                    cnt++;           
-    		        pr+=ar[i];
-                }
-    	}    	
-    	cout<<cnt<<el;
-
-
+        vl vcc;
+        forn(j,0,i+1)
+          {
+              cin>>ans;
+              vcc.pb(ans);
+          }
+        vc.pb(vcc);
     }
+
+    ans=  obj.minimumTotal(vc);
+
+    cout<<ans<<el;
 
 
     return 0;
@@ -81,9 +107,10 @@ int main()
 
 
 
-/*
 
-10
-1 1 2 3 5 8 13 21 34 55 
 
-*/
+
+
+
+
+

@@ -45,64 +45,31 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
     	
-    	cin>>n;
+    	string s;
+    	cin>>s;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
+    	ll cnt = 0,fl =0;
     	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
+    	forn(i,0,s.size())
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+    		if(cnt<0)
+    			fl = 1;
+    		
+    		if(s[i]=='(')
+    			cnt++;
+    		else
+    			cnt--;
     	}
-        
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    	
+    	if(fl || cnt!=0)
+    		cout<<"No"<<el;
+    	else
+    		cout<<"Yes"<<el;
+
+
     }
 
 

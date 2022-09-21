@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -12,7 +12,6 @@ using namespace std;
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
 #define pb               push_back
-#define mp               make_pair
 #define all(x)           (x).begin(),(x).end()
 #define fi               first
 #define se               second
@@ -38,71 +37,61 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+mll mp;
+vl vc;
+ll n,k;
+ll dp[8001][8001];
+ll solve(ll i,ll cnt)
+{
+    if(i==vc.size())
+        return 1;
+    if(dp[i][cnt]!=-1)
+        return dp[i][cnt];
+    ll ans = 0,ans1=0;
+
+    if(cnt+1<=k)
+    ans += (mp[vc[i]]%mod*solve(i+1,cnt+1)%mod)%mod;
+
+    ans1 = solve(i+1,cnt)%mod;
+
+    dp[i][cnt]= (ans+ans1)%mod;
+    //printf("i--  %lld  dp--  %lld\n", i,dp[i][cnt]);
+    return dp[i][cnt];
+}
+
 int main()
 {
 
     fio
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ll t,i,j,m,a,b,c=0,tc=1,bug1=1;
 
     //tst
     {
-    	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
-    	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
-        
-        
-        
+        cin>>n>>k;
+
+        ll ar[n];
+
         forn(i,0,n)
         {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
+            cin>>ar[i];
+
+            if(mp[ar[i]]==0)
             {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
+                mp[ar[i]]++;
+                vc.pb(ar[i]);
             }
-            
-            
-           
-            
+            else
+            mp[ar[i]]++;
         }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+        ll cnt = 0;
+
+        memset(dp,-1,sizeof dp);
+        cnt = solve(0,0);
+
+        cout<<cnt<<el;
+
+
     }
 
 

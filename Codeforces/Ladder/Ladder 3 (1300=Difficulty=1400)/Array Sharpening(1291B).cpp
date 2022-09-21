@@ -39,58 +39,54 @@ typedef    priority_queue<ll>prl;
 const ll mod=1000000007;
 
 
-ll dp[22][10][2][2];
-ll n;
-ll solve(ll i,ll j,ll f,ll fl)
+ll n,ar[300010];
+
+ll check(ll mid)
 {
-	if(i==n)
-		return 0;
+    ll f =0;
 
-	if(dp[i][j][f][fl]!=-1)
-		return dp[i][j][f][fl];
-
-	ll ans = 0;
-
-	if(f==0)
-	{
-		forn(ii,j,10)
-		{
-
-		    if(fl==0 && ii!=0)
-            {
-                printf("%lld\n",ii );
-                ans+=1+solve(i+1,ii,f,1);
-            }
-            else if(fl==0 && ii==0)
-            continue;
-            else if(fl!=0)
-            {
-                printf("*%lld %lld\n",j,ii );
-                ans+=1+solve(i+1,ii,f,fl);
-            }
-
-
-           // if(i==0)
-            if(ii!=0)
-			  ans+=solve(i+1,ii,1,1);
-            else
-			  ans+=solve(i+1,ii,1,fl);
-
-		}
-	}
-	else
+    forn(i,0,n)
     {
-    	for(ll k = j-1 ;k>=0 ;k--)
-    		{
-               //if(i==1)
-                printf("_ %lld %lld\n",j,k );
-    			ans+=1+solve(i+1,k,1,fl);
-    		}
+        if(ar[i]>=i)
+            continue;
+        else
+            f = 1;
+    }
+    if(f==0)
+        return f;
+    ll x= 0;
+
+    for(ll i = n-1;i>=0;i--)
+    {
+        if(ar[i]>=x)
+            x++;
+        else
+            f = 1;
     }
 
-    dp[i][j][f][fl] = ans;
-    return dp[i][j][f][fl];
+    if(f==0)
+        return f;
+    forn(i,0,mid+1)
+    {
+        if(ar[i]>=i)
+            continue;
+        else
+            return -1;
+
+    }
+    x = 0;
+    for(ll i=n-1;i>=mid;i--)
+    {
+        if(ar[i]>=x)
+            x++;
+        else
+            return 1;
+    }
+
+    return 0;
 }
+
+
 
 int main()
 {
@@ -99,14 +95,44 @@ int main()
 
     ll t,i,j,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
-    	cin>>n;
-    	memset(dp,-1,sizeof dp);
 
-    	ll ans = solve(0,0,0,0);
+        cin>>n;
 
-    	cout<<ans<<el;
+        forn(i,0,n)
+        cin>>ar[i];
+
+
+        ll l=0,r=n-1,mid, f = 0;
+        
+        if(n==1)
+            f = 1;
+
+        while(l<r)
+        {
+            mid =(l+r)/2;
+
+            ll x = check(mid);
+           // printf("l-- %lld  r-- %lld  mid-- %lld  x--  %lld\n", l,r,mid,x);
+
+            if(x==0)
+             {
+                    f = 1;
+                    break;
+             }
+
+             if(x==-1)
+                r = mid;
+             else if(x==1)
+                l = mid+1;
+        }
+
+
+        if(f)
+            cout<<"Yes"<<el;
+        else
+            cout<<"No"<<el;
 
 
     }

@@ -44,65 +44,41 @@ int main()
     fio
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
-
-    //tst
+    
+    vl vc;
+    vc.pb(0);
+    
+    forn(i,1,100010)
+    {
+    	vc.pb(i+vc[i-1]);
+    }
+    
+    
+    tst
     {
     	
-    	cin>>n;
+    	cin>>n>>m;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
-    	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
+    	ll l = lower_bound(vc.begin(),vc.end(),m)-vc.begin();
+       // printf("l--  %lld\n", l);
         
+        ll first,second;
         
+        first = n - l -1;
+        second = m - vc[l-1];
+        second = n - second;
+        
+        string s = "";
         
         forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
+        s+='a';
         
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
+        s[first]='b';
+        s[second]='b';
+       // printf("1st--  %lld  2nd--  %lld\n",first,second );
+        cout<<s<<el;
         
-       
-        
-   
+
     }
 
 

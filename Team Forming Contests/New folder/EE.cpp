@@ -45,64 +45,65 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    //tst
+    tst
     {
-    	
-    	cin>>n;
-    	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
-    	
-    	forn(i,0,n)
-    	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
-    	}
         
+        cin>>n;
         
+        bitset<60>bs;
         
-        forn(i,0,n)
+        bs = n;
+        ll f=0, cnt = 0;
+        
+       // cout<<bs<<el;
+        
+        forn(i,0,60)
         {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
+            if(bs[i]==1)
+                f = 1;
+            if(f && bs[i]==0)
+                {
+                    bs[i-1]=0;
+                    bs[i]=1;
+                    i-=2;
+                    while(i>=0)
+                    {
+                        if(bs[i]==1)
+                        {
+                            cnt++;
+                            bs[i]=0;
+                        }
+                        i--;
+                    }
+                    break;
+                }
             
         }
         
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
+        ll i = 0;
+        while(cnt!=0)
+        {
+            bs[i]=cnt--;
+            i++;
+        }
         
-       
+       // cout<<bs<<el;
         
-   
+        ll m = 0;        
+        forn(i,0,60)
+        {
+            if(bs[i]==1)
+            {
+                m|=1<<i;
+                //cout<<"i--  "<<i<<"   "<<(1<<i)<<el;
+            }
+            
+        }
+       // cout<<bs<<el;
+        cout<<"Case "<<tc++<<": "<<m<<el;
+
+ 
+
     }
 
 

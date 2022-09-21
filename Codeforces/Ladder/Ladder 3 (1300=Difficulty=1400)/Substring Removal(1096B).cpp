@@ -36,7 +36,7 @@ typedef    set<ll>sl;
 typedef    multiset<ll>msl;
 typedef    priority_queue<ll>prl;
 
-const ll mod=1000000007;
+const ll mod=998244353;
 
 int main()
 {
@@ -47,62 +47,35 @@ int main()
 
     //tst
     {
-    	
     	cin>>n;
+    	string s;
+    	cin>>s;
     	
-    	ll ar[n+5][n+5];
-        vl vc;
-    	
-    	
-        ll f = 0;
+    	ll cnt1=0,cnt2=0;
     	
     	forn(i,0,n)
     	{
-    		forn(j,0,n)
-    		{
-    			cin>>ar[i][j];
-    		}
+    		if(s[i]==s[0])
+    			cnt1++;
+    		else
+    			break;
     	}
-        
-        
-        
-        forn(i,0,n)
-        {
-            vl ind;
-            ll x=1;
-            forn(j,0,n)
-            {
-                if(i==j)
-                    continue;
-                
-                x*=ar[i][j];
-                ind.pb(j);
-                
-            if(ind.size()==2)
-            {
-                ll xx = ar[ind[0]][ind[1]];
-                xx = x/xx;
-                xx = sqrt(xx);
-                
-                vc.pb(xx);
-                break;;
-            }     
-                
-            }
-            
-            
-           
-            
-        }
-        
-        forn(i,0,vc.size())
-        cout<<vc[i]<<" ";
-        cout<<el;
-       
-        
-       
-        
-   
+    	
+    	for(i=n-1;i>=0;i--)
+    		{
+    			if(s[i]==s[n-1])
+    				cnt2++;
+    			else
+    				break;
+    		}
+    		
+    		
+    	if(s[0]==s[n-1])
+    		cout<<((cnt1+1)*(cnt2+1))%mod<<el;
+    	else
+    		cout<<(cnt1+cnt2+1)<<el;
+
+
     }
 
 

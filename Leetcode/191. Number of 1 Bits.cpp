@@ -1,13 +1,14 @@
 
+
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll               long long
+#define ll               int
 #define dl               double
 #define forn(i,a,n)      for (ll i=a;i<n;i++)
 #define per(i,a,n)       for (ll i=n-1;i>=a;i--)
@@ -28,8 +29,8 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
-typedef    vector<ll>vl;
+typedef    unordered_map<char,ll>mll;
+typedef    vector<string>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
 typedef    set<ll>sl;
@@ -38,42 +39,39 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        ll cnt = 0;
+        bitset<34>bs;
+
+        bs = n;
+        while(bs!=0)
+        {
+            if(bs[0]==1)
+                cnt++;
+            bs=bs>>1;
+        }
+
+
+        return cnt;
+
+    }
+};
+
 
 int main()
 {
 
     fio
+    Solution obj;
+    uint32_t n;
+    ll ans;
+    cin>>n;
 
-    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    ans=  obj.hammingWeight(n);
 
-   // tst
-    {
-    	cin>>n;
-    	
-    	ll ar[n+5];
-    	
-    	forn(i,0,n)
-    	{
-    		cin>>ar[i];
-    	}
-    	
-    	sort(ar,ar+n);
-    	
-    	ll ans = 0,pr=0,cnt=0;
-    	
-    	
-    	forn(i,0,n)
-    	{
-    		if(ar[i]>=pr)
-    			{
-                    cnt++;           
-    		        pr+=ar[i];
-                }
-    	}    	
-    	cout<<cnt<<el;
-
-
-    }
+    cout<<ans<<el;
 
 
     return 0;
@@ -81,9 +79,7 @@ int main()
 
 
 
-/*
 
-10
-1 1 2 3 5 8 13 21 34 55 
 
-*/
+
+
