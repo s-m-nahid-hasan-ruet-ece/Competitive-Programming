@@ -47,11 +47,6 @@ ll check(ll x)
 	{
 		if(s+ar[i]<=x)
 			s+=ar[i];
-		else if(x<ar[i])
-			{
-				fl = 0;
-				break;
-			}
 		else			
 			{
 				cnt++;

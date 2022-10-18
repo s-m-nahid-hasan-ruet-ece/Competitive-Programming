@@ -28,7 +28,7 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    map<pll,ll>mll;
+typedef    unordered_map<ll,ll>mll;
 typedef    vector<ll>vl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
@@ -38,51 +38,21 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
-mll dp;
-ll ar[100010],n;
-
-
-ll solve(ll i, ll last)
-{
-	
-	if(i>=n)
-		return 0;
-	
-	if(dp[pll(i,last)]!=0)
-		return dp[pll(i,last)];
-	
-	
-	ll ans =0, ans1=0;
-	
-	if(ar[i]>last)
-	ans+=ar[i]+solve(i+1,ar[i]);
-	
-	ans1+=solve(i+1,last);
-	
-	dp[pll(i,last)]= max(ans,ans1);
-	
-	return dp[pll(i,last)];
-}
-
 int main()
 {
 
     fio
 
-    ll t,i,j,m,k,a,b,c=0,tc=1,bug1=1;
+    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-   // tst
+    tst
     {
-    	cin>>n;
+    	cin>>a>>b>>c;
     	
-    	
-    	forn(i,0,n)
-    	cin>>ar[i];
-    	        
-        
-        ll r = solve(0,-1);
-        
-        cout<<r<<el;
+    	if((a+b)==c || (b+c)==a || (a+c)==b)
+    		cout<<"YES"<<el;
+    	else
+    		cout<<"NO"<<el;
 
     }
 

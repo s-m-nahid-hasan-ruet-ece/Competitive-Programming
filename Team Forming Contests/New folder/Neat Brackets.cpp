@@ -45,7 +45,7 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    tst
+    //tst
     {
     	
     	string s;
