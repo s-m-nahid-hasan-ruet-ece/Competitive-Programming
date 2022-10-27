@@ -45,52 +45,55 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-  //  tst
+   // tst
     {
+    	
     	cin>>n;
     	
     	ll ar[n+5];
-    	
+    	sl st;
+
     	forn(i,0,n)
-    	cin>>ar[i];
+    	  {
+    	  	cin>>ar[i];
+    	  	st.insert(i);
+    	  }
+    	  	
+    	  
+    	 
+    	sort(ar,ar+n);
     	
-    	vl vc;
-      
-      for(i=1;i*i<=n;i++)
-      {
-         if(n%i==0)
-         {
-            vc.pb(n/i);
-            
-            if(i*i!=n)
-              vc.pb(i);            
-         }
-      }
-      
-      ll ans= INT_MIN;
-      forn(i,0,vc.size())
-      {
-          if((n/vc[i])<=2)
-            continue;
-          for(j = 0;j<vc[i];j++)
-          {
-             ll s = 0;
-             for(k = j;k<n;k+=(vc[i]))
-             {
-               s+=ar[k];
-               
-             //  printf("i--  %lld  j--  %lld  k-- %lld vc[i]--- %lld\n",i,j,k,vc[i] );
-             }
-             
-             ans = max(ans,s);
-          }
-                
-      }
-      
-      
-      cout<<ans<<el;
-        
-            
+    	ll cnt1=0,cnt=0;
+    	
+    	
+    	while(!st.empty())
+    	{
+    		vl vc;
+    		cnt1= 0;
+    		for(auto I = st.begin();I!=st.end();I++)
+    		{
+    			ll x = *I;
+    			
+    			if(ar[x]>=cnt1)
+    			{
+    				vc.pb(x);
+    				cnt1++;
+    			}
+    		}
+    		
+    		forn(i,0,vc.size())
+    		 st.erase(vc[i]);
+    		
+    		cnt++;
+    	}
+    	
+    	
+    	cout<<cnt<<el;
+    	
+    	
+   
+    	
+    	
     	
 
 
@@ -101,3 +104,22 @@ int main()
 }
 
 
+
+/*
+
+5
+0 0 1 1 3
+
+3 1 1 
+0
+0
+
+
+3 1 0
+1 0
+
+0 1 3
+0 1 
+
+
+*/

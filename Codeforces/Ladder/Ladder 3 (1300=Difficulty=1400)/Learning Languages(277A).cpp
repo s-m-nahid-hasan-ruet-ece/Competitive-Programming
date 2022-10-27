@@ -28,8 +28,8 @@ using namespace std;
 
 typedef    pair<ll,ll>pll;
 typedef    pair<ll,pll>pl;
-typedef    unordered_map<ll,ll>mll;
 typedef    vector<ll>vl;
+typedef    unordered_map<ll,vl>mll;
 typedef    vector<vl>vvl;
 typedef    vector<pll>vll;
 typedef    vector<pl>vlp;
@@ -71,36 +71,60 @@ int main()
     	cin>>n>>m;
     	init();
         mll mp;
-    	vvl vc;
+        ll ans = 0;
         
     	forn(j,0,n)
     	{
     		cin>>k;
+            vl vc;
+            if(k==0)
+                ans++;
     		forn(i,0,k)
     		{
     			cin>>a;  
-                vc[j].pb(a);
-                mp[a]++;
+                vc.pb(a);
     		}
             
-            forn(i,1,k)
-            {
-                Union(vc[j][i-1],vc[j][i]);
-            }
-            
-    	}
-    	
-        ll cnt =0;
-        sl st;
-    	forn(i,1,n+1)
-    	{
-            if(mp[i]!=0)
-                st.insert(par[i]);
-    		printf("i--  %lld  par--- %lld\n", i,par[i]);
+            mp[j+1]=vc;
     	}
         
-        cout<<st.size()-1<<el;
-
+        
+        forn(i,1,n+1)
+        {
+            forn(j,i+1,n+1)
+            {
+                ll f = 0;
+                forn(k,0,mp[i].size())
+                {
+                    forn(l,0,mp[j].size())
+                    {
+                        if(mp[i][k]==mp[j][l])
+                        {
+                            Union(i,j);
+                            f = 1;
+                            break;
+                        }
+                    }
+                    if(f)
+                      break;
+                }
+            }
+        }
+        
+    	sl st;
+        
+        forn(i,1,n+1)
+          {
+            st.insert(Find(i));
+            //printf("i--  %lld  par--  %lld\n", i,Find(i));
+          }
+          
+        ans = max(ans,(ll)(st.size()-1));
+        
+        
+        cout<<ans<<el;
+        
+        
 
     }
 

@@ -22,7 +22,7 @@ using namespace std;
 #define pi               acos(-1.0)
 #define fio              ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define tst              cin>>t; while(t--)
-#define sz               200050
+#define sz               60
 
 
 
@@ -38,66 +38,81 @@ typedef    priority_queue<ll>prl;
 
 const ll mod=1000000007;
 
+
+//  SIEVE OF ERATOSTHENES
+bitset<sz>bs;
+vl prime;
+void sieve()
+{
+    for(ll i=2; i<=sz; i++)
+    {
+        if(bs[i]==0)
+        {
+            for(ll j = i*i; j<=sz; j+=i)				bs[j]=1;
+            prime.pb(i);
+        }
+    }
+}
+
+
+
+
 int main()
 {
 
     fio
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+    
+    sieve();
 
-  //  tst
+    ll cnt = 0, cntt=0;
+
+    forn(i,0,prime.size())
     {
-    	cin>>n;
-    	
-    	ll ar[n+5];
-    	
-    	forn(i,0,n)
-    	cin>>ar[i];
-    	
-    	vl vc;
-      
-      for(i=1;i*i<=n;i++)
-      {
-         if(n%i==0)
-         {
-            vc.pb(n/i);
-            
-            if(i*i!=n)
-              vc.pb(i);            
-         }
-      }
-      
-      ll ans= INT_MIN;
-      forn(i,0,vc.size())
-      {
-          if((n/vc[i])<=2)
-            continue;
-          for(j = 0;j<vc[i];j++)
-          {
-             ll s = 0;
-             for(k = j;k<n;k+=(vc[i]))
-             {
-               s+=ar[k];
-               
-             //  printf("i--  %lld  j--  %lld  k-- %lld vc[i]--- %lld\n",i,j,k,vc[i] );
-             }
-             
-             ans = max(ans,s);
-          }
-                
-      }
-      
-      
-      cout<<ans<<el;
+        if(cntt==20)
+            break;
+        cout<<prime[i]<<el;
+        fflush(stdout);
+        cntt++;
         
+        string s;
+        cin>>s;
+        
+        if(s=="yes")
+            {                
+                cnt++;         
+             //   cout<<"cnt-- "<<cnt<<el;       
+                if(cnt>=2)
+                    break;
+                
+                if(prime[i]*prime[i]<=100)
+                {
+                   cout<<prime[i]*prime[i]<<el;
+                   cntt++;
+                
+                   cin>>s;
+                
+                   if(s=="yes")
+                     cnt++;                      
+                }
+              
+            }
+        if(cnt>=2)
+            break;
             
-    	
-
-
     }
+    
+    if(cnt<2)
+        cout<<"prime"<<el;
+    else
+        cout<<"composite"<<el;
+    fflush(stdout);
+    
 
 
     return 0;
 }
+
 
 

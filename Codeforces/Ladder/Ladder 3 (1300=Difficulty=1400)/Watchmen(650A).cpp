@@ -41,56 +41,66 @@ const ll mod=1000000007;
 int main()
 {
 
-    fio
+    //fio
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-  //  tst
+    //tst
     {
+    	
     	cin>>n;
     	
-    	ll ar[n+5];
+    	vll vc;
+    	mll mp;
     	
     	forn(i,0,n)
-    	cin>>ar[i];
+    	{
+    		cin>>a>>b;
+    		vc.pb(pll(a,b));
+    		mp[b]++;    		
+    	}
     	
-    	vl vc;
-      
-      for(i=1;i*i<=n;i++)
-      {
-         if(n%i==0)
-         {
-            vc.pb(n/i);
-            
-            if(i*i!=n)
-              vc.pb(i);            
-         }
-      }
-      
-      ll ans= INT_MIN;
-      forn(i,0,vc.size())
-      {
-          if((n/vc[i])<=2)
-            continue;
-          for(j = 0;j<vc[i];j++)
-          {
-             ll s = 0;
-             for(k = j;k<n;k+=(vc[i]))
-             {
-               s+=ar[k];
-               
-             //  printf("i--  %lld  j--  %lld  k-- %lld vc[i]--- %lld\n",i,j,k,vc[i] );
-             }
-             
-             ans = max(ans,s);
-          }
-                
-      }
-      
-      
-      cout<<ans<<el;
-        
-            
+    	sort(vc.begin(),vc.end());
+    	
+ 
+    	ll ans = 0;
+    	
+    	forn(i,0,n)
+    	{
+    		j = i+1;
+    		ll cnt = 0;
+    		mll mpp;
+    		mpp[vc[i].second]++;
+
+    		while(j<n && vc[i].first==vc[j].first)
+    		{
+                mpp[vc[j].second]++;                                
+    			j++;
+    			cnt++;
+    		}
+    		i = j-1;
+    		ans+=(cnt*(cnt+1))/2;
+    		
+    		for(auto I = mpp.begin();I!=mpp.end();I++)
+    		{
+    			ll x= I->second;
+                ll y = I->first;                
+      			x--;
+    			ans-=(x*(x+1))/2;
+    		}
+    		
+    	}
+    	
+    	for(auto I = mp.begin();I!=mp.end();I++)
+    		{
+    			ll x= I->second;
+    			x--;
+    			ans+=(x*(x+1))/2;
+    		}
+    	
+    	
+    	cout<<ans<<el;
+    	
     	
 
 
@@ -100,4 +110,37 @@ int main()
     return 0;
 }
 
+/*
 
+6
+0 0
+0 1
+0 2
+-1 1
+0 1
+1 1
+
+6 + 5
+
+
+-1 1
+0 0
+0 1
+0 1
+0 1
+0 2
+1 1
+
+-1 0 0 0 0 1
+
+ 0 1 1 1 1 1 2 
+ 
+ 7
+ 
+ 10 - 3 = 7
+ 
+ 0, 1 
+ 
+ 
+
+*/

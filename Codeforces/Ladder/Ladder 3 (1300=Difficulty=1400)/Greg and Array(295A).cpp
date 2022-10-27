@@ -45,53 +45,8 @@ int main()
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-  //  tst
+    tst
     {
-    	cin>>n;
-    	
-    	ll ar[n+5];
-    	
-    	forn(i,0,n)
-    	cin>>ar[i];
-    	
-    	vl vc;
-      
-      for(i=1;i*i<=n;i++)
-      {
-         if(n%i==0)
-         {
-            vc.pb(n/i);
-            
-            if(i*i!=n)
-              vc.pb(i);            
-         }
-      }
-      
-      ll ans= INT_MIN;
-      forn(i,0,vc.size())
-      {
-          if((n/vc[i])<=2)
-            continue;
-          for(j = 0;j<vc[i];j++)
-          {
-             ll s = 0;
-             for(k = j;k<n;k+=(vc[i]))
-             {
-               s+=ar[k];
-               
-             //  printf("i--  %lld  j--  %lld  k-- %lld vc[i]--- %lld\n",i,j,k,vc[i] );
-             }
-             
-             ans = max(ans,s);
-          }
-                
-      }
-      
-      
-      cout<<ans<<el;
-        
-            
-    	
 
 
     }
@@ -99,5 +54,6 @@ int main()
 
     return 0;
 }
+
 
 
