@@ -47,6 +47,18 @@ int main()
 
     tst
     {
+    	cin>>n;
+    	
+    	ll ar[n+5];
+    	
+    	forn(i,0,n)
+    	cin>>ar[i];
+    	
+    	
+    	if(ar[0]==1)
+    		cout<<"Yes"<<el;
+    	else
+    		cout<<"No"<<el;
 
 
     }
@@ -57,18 +69,3 @@ int main()
 
 
 
-
-
-
-fig, (ax1, ax2,ax3) = plt.subplots(3)
-fig.set_figheight(8)
-fig.set_figwidth(25)
-fig.suptitle('Tabular Convolution Method')
-ax1.set_title("Plotting of h(n)")
-ax1.stem(ht, h)
-
-ax2.set_title("Plotting of x(n)")
-ax2.stem(xt, x)
-
-ax3.set_title("Plotting of Convolution")
-ax3.stem(ct,conv)

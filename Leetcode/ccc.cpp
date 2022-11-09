@@ -1,7 +1,7 @@
 
 /*
      Author's Handle : Crazy_Dreamer
-     Author's Name   : S M Nahid Hasan                
+     Author's Name   : S M Nahid Hasan
 */
 
 #include<bits/stdc++.h>
@@ -48,6 +48,65 @@ int main()
     tst
     {
 
+    	cin>>n;
+
+    	string s1,s2;
+
+    	cin>>s1>>s2;
+
+
+    	ll cnt=0,cnt0=0;
+
+    	forn(i,0,n)
+    	{
+    		if(s1[i]!=s2[i])
+    			cnt++;
+    	    if(s1[i]=='0')
+    	    	cnt0++;
+    	}
+
+
+    	if(s1==s2 || cnt==s1.size())
+    	{
+    		cout<<"Yes"<<el;
+    		if(s1==s2)
+    		{
+                if(cnt0==0)
+                {
+                cout<<n<<el;
+                forn(i,0,n)
+                {
+                    if(s1[i]=='1')
+                        cout<<i+1<<" "<<i+1<<el;
+                }
+                }
+                else if(cnt0!=n)
+                {
+                cout<<n-cnt0<<el;
+                forn(i,0,n)
+                {
+                    if(s1[i]=='1')
+                        cout<<i+1<<" "<<i+1<<el;
+                }
+                }
+                }
+
+
+    		}
+    		else
+    		{
+    			cout<<n-cnt0<<el;
+    			forn(i,0,n)
+    			{
+    				if(s1[i]=='1')
+    					cout<<i+1<<" "<<i+1<<el;
+    			}
+    		}
+    	}
+    	else
+    		cout<<"No"<<el;
+
+
 
     }
 
@@ -57,18 +116,3 @@ int main()
 
 
 
-
-
-
-fig, (ax1, ax2,ax3) = plt.subplots(3)
-fig.set_figheight(8)
-fig.set_figwidth(25)
-fig.suptitle('Tabular Convolution Method')
-ax1.set_title("Plotting of h(n)")
-ax1.stem(ht, h)
-
-ax2.set_title("Plotting of x(n)")
-ax2.stem(xt, x)
-
-ax3.set_title("Plotting of Convolution")
-ax3.stem(ct,conv)

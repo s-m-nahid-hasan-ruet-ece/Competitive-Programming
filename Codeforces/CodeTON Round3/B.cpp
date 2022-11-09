@@ -47,6 +47,42 @@ int main()
 
     tst
     {
+    	cin>>n;
+    	
+    	string s;
+    	cin>>s;
+    	
+    	ll c0=0,c1=0, cnt=0, mx=0;
+    	
+    	forn(i,0,s.size())
+    	{
+    	   char ch = s[i];
+    	   cnt=0;
+    	   while(i<s.size() && s[i]==ch)
+    	   {
+    	   	  cnt++;
+              i++;
+    	   }
+    	   i--;
+    	   
+    	   if(ch=='1')
+    	   {
+    	   	  c1+=cnt;
+    	   	  
+    	   }
+    	   else
+    	   {
+    	   	  c0+=cnt;
+    	   }
+    	   
+    	   mx = max(mx,cnt);
+    	}
+    	
+    	
+    	ll ans = max(c1*c0, mx*mx);
+    	
+    	cout<<ans<<el;
+    	
 
 
     }
@@ -57,18 +93,3 @@ int main()
 
 
 
-
-
-
-fig, (ax1, ax2,ax3) = plt.subplots(3)
-fig.set_figheight(8)
-fig.set_figwidth(25)
-fig.suptitle('Tabular Convolution Method')
-ax1.set_title("Plotting of h(n)")
-ax1.stem(ht, h)
-
-ax2.set_title("Plotting of x(n)")
-ax2.stem(xt, x)
-
-ax3.set_title("Plotting of Convolution")
-ax3.stem(ct,conv)
