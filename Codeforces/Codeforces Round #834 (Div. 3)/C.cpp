@@ -1,0 +1,150 @@
+
+/*
+     Author's Handle : Crazy_Dreamer
+     Author's Name   : S M Nahid Hasan                
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ll               long long
+#define dl               double
+#define forn(i,a,n)      for (ll i=a;i<n;i++)
+#define per(i,a,n)       for (ll i=n-1;i>=a;i--)
+#define pb               push_back
+#define mp               make_pair
+#define all(x)           (x).begin(),(x).end()
+#define fi               first
+#define se               second
+#define bug              cout<<"bug --  "<<bug1++<<el;
+#define SZ(x)            ((ll)(x).size())
+#define el               endl
+#define pi               acos(-1.0)
+#define fio              ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define tst              cin>>t; while(t--)
+#define sz               200050
+
+
+
+typedef    pair<ll,ll>pll;
+typedef    pair<ll,pll>pl;
+typedef    unordered_map<ll,ll>mll;
+typedef    vector<ll>vl;
+typedef    vector<pll>vll;
+typedef    vector<pl>vlp;
+typedef    set<ll>sl;
+typedef    multiset<ll>msl;
+typedef    priority_queue<ll>prl;
+
+const ll mod=1000000007;
+
+int main()
+{
+
+    fio
+
+    ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
+
+    tst
+    {
+    	ll l,r, x;
+    	cin>>l>>r>>x;
+    	cin>>a>>b;
+    	ll A = a;
+    	
+    	if(a==b)
+    		cout<<0<<el;
+    	else
+    	{
+    		ll ans1=0,ans2=0;
+    		
+    		forn(i,0,40)
+    		{
+    			//cout<<"p1-- "<<a<<el;
+    			if(abs(a-b)>=x)
+    			{
+    				ans1++;
+    				break;
+    			}
+    			else if(i%2==0)
+    			{
+    				if(abs(l-a)>=x)
+    				{
+    					ans1++;
+    					a = l;
+    				}
+    				else
+    					{
+    						ans1 = INT_MAX;
+    						break;
+    					}
+    			}
+    			else
+    			{
+    			  if(abs(r-a)>=x)
+    				{
+    					ans1++;
+    					a = r;
+    				}
+    				else
+    					{
+    						ans1 = INT_MAX;
+    						break;
+    					}
+    			}
+    		}
+    		
+    		
+    		a = A;
+    		forn(i,0,40)
+    		{
+    			    		//	cout<<"p2-- "<<a<<el;
+
+    			if(abs(a-b)>=x)
+    			{
+    				ans2++;
+    				break;
+    			}
+    			else if(i%2==1)
+    			{
+    				if(abs(l-a)>=x)
+    				{
+    					ans2++;
+    					a = l;
+    				}
+    				else
+    					{
+    						ans2 = INT_MAX;
+    						break;
+    					}
+    			}
+    			else
+    			{
+    			  if(abs(r-a)>=x)
+    				{
+    					ans2++;
+    					a = r;
+    				}
+    				else
+    					{
+    						ans2 = INT_MAX;
+    						break;
+    					}
+    			}
+    		}
+    		
+    		if(min(ans1,ans2)==INT_MAX || min(ans1,ans2)==40)
+    			cout<<"-1"<<el;
+    		else    			
+    		cout<<min(ans1,ans2)<<el;
+    	}
+
+
+    }
+
+
+    return 0;
+}
+
+
+

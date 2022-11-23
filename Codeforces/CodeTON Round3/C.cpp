@@ -82,9 +82,14 @@ int main()
                 }
                 else if(cnt0!=n && (n-cnt0)%2==1)
                 {
-                    
-                    cout<<1<<" "<<n-1<<el;
-                    vc.pb(pll(1,n-1));
+                    if(s1=="10" || "01")
+                    {
+                        cout<<2<<el;
+                        
+                    }
+                    else
+                    {
+                                            vc.pb(pll(1,n-1));
                     forn(i,0,n-1)
                     {
                         if(s1[i]=='0')
@@ -97,7 +102,10 @@ int main()
                     cout<<vc.size()<<el;
                     
                     forn(i,0,vc.size())
-                    cout<<vc[i].first<<" "<<vc[i].second<<el;
+                    cout<<vc[i].first<<" "<<vc[i].second<<el;                        
+                    }
+                    
+
                 }
 
         }
