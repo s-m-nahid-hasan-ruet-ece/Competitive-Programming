@@ -41,79 +41,63 @@ const ll mod=1000000007;
 int main()
 {
 
-    //fio
+    fio
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
     tst
     {
-    	ll d;
-    	cin>>n>>c>>d;
+    	cin>>n;
     	
-    	ll ar[n];
-    	
+    	ll ar[n], cnt = 0;
+    	vl vc;
     	forn(i,0,n)
-    	cin>>ar[i];
-    	
-    	sort(ar,ar+n);
-    	
-    	
-    	if(ar[n-1]*d>=c)
     	{
-    		ll s= 0, cntd=0, inf = 0;
-    		
-    		for(i = n-1;i>=0;i--)
-    		{
-    			s+=ar[i];
-    			cntd++;
-    			
-    			if(cntd<d && s>=c)
-    				{
-    					inf = 1;
-    					break;
-    				}
-    		}
-    		
-    		if(inf)
-    		{
-    			cout<<"Infinity"<<el;
-    		}
-    		else
-    		{
-                ll x = c/d;
-                
-                ll cnt =0, sum = 0, cnt_size=0;
-                
-                while(sum<c)
-                {
-                    ll ccntt=0;
-                    for(i= n-1;i>=0;i--)
-                    {
-                        if(ar[i]<x)
-                            break;
-                        ccntt++;
-                        sum+=ar[i];
-                    }
-                    cnt++;
-                    cnt_size= max(ccntt,cnt_size);
-                }
-                
-                printf("cnt-- %lld  cnt_size-- %lld\n", cnt, cnt_size);
-                if(cnt==d)
-                    cout<<0<<el;
-                else                    
-    			    cout<<d/(cnt*cnt_size)<<el;
-    		}
-    		
-    		
+    		cin>>ar[i];
+    	    ll x = ar[i];
+    	    
+    	    while(x%2==0)
+    	    {
+    	    	cnt++;
+    	    	x/=2;
+    	    }
+    	    
+    	    x = i+1;
+    	    ll cntt=0;
+    	    while(x%2==0)
+    	    {
+    	    	cntt++;
+    	    	x/=2;
+    	    }
+    	    vc.pb(cntt);
+    	}
+    	
+    	sort(vc.rbegin(),vc.rend());
+    	
+    	if(cnt>n)
+    	{
+    		cout<<0<<el;
     	}
     	else
     	{
-    		cout<<"Impossible"<<el;
+    		ll ans = 0;
+    		
+    		forn(i,0,vc.size())
+    		{
+    			if(cnt>=n)
+    				break;
+    			
+    			cnt+=vc[i];
+    			ans++;
+    				
+    		}
+    		
+    		if(cnt<n)
+    			cout<<-1<<el;
+    		else
+    			cout<<ans<<el;
+    		
     	}
-    	
-    	
-    	
 
 
     }
@@ -124,11 +108,3 @@ int main()
 
 
 
-/*
-
-
-2 8 12
-2 1
-
-
-*/

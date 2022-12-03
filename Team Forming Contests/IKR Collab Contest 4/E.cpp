@@ -41,78 +41,51 @@ const ll mod=1000000007;
 int main()
 {
 
-    //fio
+    fio
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
-    tst
+    //tst
     {
-    	ll d;
-    	cin>>n>>c>>d;
     	
-    	ll ar[n];
+    	cin>>n;
+    	
+    	ll ar[n+4];
     	
     	forn(i,0,n)
     	cin>>ar[i];
     	
-    	sort(ar,ar+n);
+    	ll cum_xor[n+4], cum_sum[n+4];
     	
+    	memset(cum_xor,0,sizeof(cum_xor));    	
+    	memset(cum_sum,0,sizeof(cum_sum));
     	
-    	if(ar[n-1]*d>=c)
+    	forn(i,1,n)
     	{
-    		ll s= 0, cntd=0, inf = 0;
-    		
-    		for(i = n-1;i>=0;i--)
-    		{
-    			s+=ar[i];
-    			cntd++;
-    			
-    			if(cntd<d && s>=c)
-    				{
-    					inf = 1;
-    					break;
-    				}
-    		}
-    		
-    		if(inf)
-    		{
-    			cout<<"Infinity"<<el;
-    		}
-    		else
-    		{
-                ll x = c/d;
-                
-                ll cnt =0, sum = 0, cnt_size=0;
-                
-                while(sum<c)
-                {
-                    ll ccntt=0;
-                    for(i= n-1;i>=0;i--)
-                    {
-                        if(ar[i]<x)
-                            break;
-                        ccntt++;
-                        sum+=ar[i];
-                    }
-                    cnt++;
-                    cnt_size= max(ccntt,cnt_size);
-                }
-                
-                printf("cnt-- %lld  cnt_size-- %lld\n", cnt, cnt_size);
-                if(cnt==d)
-                    cout<<0<<el;
-                else                    
-    			    cout<<d/(cnt*cnt_size)<<el;
-    		}
-    		
-    		
+    		cum_xor[i]=ar[i]^ar[i-1];
+    		cum_sum[i]=ar[i]+ar[i-1];
+           printf("i--  %lld  x--  %lld   s--  %lld\n", i,cum_xor[i],cum_sum[i]);
     	}
-    	else
+    	
+    	ll cnt = 0,ans = n;
+    	
+    	forn(i,1,n)
     	{
-    		cout<<"Impossible"<<el;
+            
+    		cnt = 0;
+    		while(i<n && cum_sum[i]==cum_xor[i])
+    		{
+    			cnt++;
+    			i++;
+    		}
+    	 printf("cnt-- %lld\n",cnt );
+           
+    	   ans+=((cnt+1)*cnt)/2;
+    		
     	}
     	
     	
+    	cout<<ans<<el;
     	
 
 
@@ -124,11 +97,3 @@ int main()
 
 
 
-/*
-
-
-2 8 12
-2 1
-
-
-*/

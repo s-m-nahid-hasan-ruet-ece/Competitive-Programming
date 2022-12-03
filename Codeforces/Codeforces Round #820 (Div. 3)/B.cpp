@@ -41,79 +41,35 @@ const ll mod=1000000007;
 int main()
 {
 
-    //fio
+    fio
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
     tst
     {
-    	ll d;
-    	cin>>n>>c>>d;
+    	string s,ss="";
     	
-    	ll ar[n];
+    	cin>>n>>s;
     	
-    	forn(i,0,n)
-    	cin>>ar[i];
-    	
-    	sort(ar,ar+n);
-    	
-    	
-    	if(ar[n-1]*d>=c)
+    	for(i=n-1;i>=0;i--)
     	{
-    		ll s= 0, cntd=0, inf = 0;
-    		
-    		for(i = n-1;i>=0;i--)
+    		ll x ;
+    		if(s[i]=='0')
     		{
-    			s+=ar[i];
-    			cntd++;
-    			
-    			if(cntd<d && s>=c)
-    				{
-    					inf = 1;
-    					break;
-    				}
-    		}
-    		
-    		if(inf)
-    		{
-    			cout<<"Infinity"<<el;
+    			x = (s[i-2]-'0')*10+(s[i-1]-'0');
+                i-=2;
     		}
     		else
-    		{
-                ll x = c/d;
-                
-                ll cnt =0, sum = 0, cnt_size=0;
-                
-                while(sum<c)
-                {
-                    ll ccntt=0;
-                    for(i= n-1;i>=0;i--)
-                    {
-                        if(ar[i]<x)
-                            break;
-                        ccntt++;
-                        sum+=ar[i];
-                    }
-                    cnt++;
-                    cnt_size= max(ccntt,cnt_size);
-                }
-                
-                printf("cnt-- %lld  cnt_size-- %lld\n", cnt, cnt_size);
-                if(cnt==d)
-                    cout<<0<<el;
-                else                    
-    			    cout<<d/(cnt*cnt_size)<<el;
-    		}
-    		
-    		
-    	}
-    	else
-    	{
-    		cout<<"Impossible"<<el;
+    			x = s[i]-'0';
+    	//	printf("x-- %lld\n", x);
+    		ss+=(char)('a'+x-1);
     	}
     	
     	
+    	reverse(ss.begin(),ss.end());
     	
+    	
+    	cout<<ss<<el;
 
 
     }
@@ -124,11 +80,3 @@ int main()
 
 
 
-/*
-
-
-2 8 12
-2 1
-
-
-*/

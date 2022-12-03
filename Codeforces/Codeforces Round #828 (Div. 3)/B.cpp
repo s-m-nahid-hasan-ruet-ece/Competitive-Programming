@@ -41,80 +41,53 @@ const ll mod=1000000007;
 int main()
 {
 
-    //fio
+    fio
 
     ll t,i,j,n,m,k,a,b,c=0,tc=1,bug1=1;
 
     tst
     {
-    	ll d;
-    	cin>>n>>c>>d;
-    	
+    	cin>>n>>m;
     	ll ar[n];
-    	
+    	ll s= 0,cnt0=0,cnt1=0;
+        ll odd=0,even=0;
+
     	forn(i,0,n)
-    	cin>>ar[i];
-    	
-    	sort(ar,ar+n);
-    	
-    	
-    	if(ar[n-1]*d>=c)
     	{
-    		ll s= 0, cntd=0, inf = 0;
-    		
-    		for(i = n-1;i>=0;i--)
-    		{
-    			s+=ar[i];
-    			cntd++;
-    			
-    			if(cntd<d && s>=c)
-    				{
-    					inf = 1;
-    					break;
-    				}
-    		}
-    		
-    		if(inf)
-    		{
-    			cout<<"Infinity"<<el;
-    		}
+            cin>>ar[i];
+            s+=ar[i];
+            if(ar[i]%2)
+                odd++;
+            else
+                even++;
+        }
+    	
+    	
+    	while(m--)
+    	{
+    		cin>>a>>b;
+    		if(a%2)
+            {                
+                s+=odd*b;
+
+                if(b%2)
+                   {                    
+                    even+=odd;
+                    odd= 0;
+                   }
+            }
     		else
     		{
-                ll x = c/d;
-                
-                ll cnt =0, sum = 0, cnt_size=0;
-                
-                while(sum<c)
+                s+=even*b;
+                if(b%2)
                 {
-                    ll ccntt=0;
-                    for(i= n-1;i>=0;i--)
-                    {
-                        if(ar[i]<x)
-                            break;
-                        ccntt++;
-                        sum+=ar[i];
-                    }
-                    cnt++;
-                    cnt_size= max(ccntt,cnt_size);
+                    odd+=even;
+                    even = 0;
                 }
-                
-                printf("cnt-- %lld  cnt_size-- %lld\n", cnt, cnt_size);
-                if(cnt==d)
-                    cout<<0<<el;
-                else                    
-    			    cout<<d/(cnt*cnt_size)<<el;
-    		}
-    		
-    		
-    	}
-    	else
-    	{
-    		cout<<"Impossible"<<el;
+            }
+            cout<<s<<el;
     	}
     	
-    	
-    	
-
 
     }
 
@@ -124,11 +97,3 @@ int main()
 
 
 
-/*
-
-
-2 8 12
-2 1
-
-
-*/
