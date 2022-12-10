@@ -15,7 +15,7 @@ bool isUniqueWithDS(string s)
 			break;
 		}
 	}
-	
+
 	return ans;
 }
 
@@ -35,7 +35,7 @@ bool isUniqueWithoutDS(string s)
 				break;
 		}
 	}
-	
+
 	return ans;
 }
 
@@ -43,12 +43,12 @@ bool isUniqueWithoutDS(string s)
 int main()
 {
 	string s;
-	
+
 	cin>>s;
-	
-	bool r = isUniqueWithDS(s);	
+
+	bool r = isUniqueWithDS(s);
 	bool x = isUniqueWithoutDS(s);
-	
+
 	cout<<r<<endl;
 	cout<<x<<endl;
 }
