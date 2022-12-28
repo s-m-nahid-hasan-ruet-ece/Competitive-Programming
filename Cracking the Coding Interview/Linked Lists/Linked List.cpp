@@ -1,3 +1,4 @@
+#include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -33,22 +34,17 @@ void appendToTail(int item)
     
 }
 
-void deleteDuplicateNode()
+void deleteNode(int item)
 {
 	struct node *temp = head;
-	map<int,int>mp;
 	
 	while(temp-> next != NULL)
 	{
-		int item = temp->data;	
-		mp[item]++;
-		if(mp[item]>1)
+		if(temp->data== item)
 		{
 			temp->next = temp->next->next;
-			mp[item]--;
+			return;
 		}
-		
-		temp = temp->next;
 	}
 }
 
@@ -78,7 +74,6 @@ void display()
 int main()
 {
 	int n,x;
-	
 	cin>>n;
 	
 	for(int i = 0;i<n;i++)
@@ -87,8 +82,5 @@ int main()
 		appendToTail(x);
 	}
 	
-	deleteDuplicateNode();
-	
 	display();
-	
 }
